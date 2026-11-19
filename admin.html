@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang=“tr”>
-<head>
-<meta charset=“UTF-8”>
-<title>Yönetim Paneli</title>
-</head>
-<body>
-<h2>Oyun Ekle</h2>
-<form id=“productForm”>
-<input type=“text” placeholder=“Oyun Adı” required>
-
-<input type=“text” placeholder=“Kategori” required>
-
-<input type=“url” placeholder=“Resim URL” required>
-
-<input type=“number” placeholder=“Fiyat” required>
-
-<input type=“number” placeholder=“İndirimli Fiyat”>
-
-<button type=“submit”>Kaydet</button>
+<form id="productForm">
+  <h3>Oyun Ekleme Formu</h3>
+  <div>
+    <label for="gameName">Oyun Adı:</label>
+    <input type="text" id="gameName" required>
+  </div>
+  <div>
+    <label for="category">Kategori:</label>
+    <input type="text" id="category" required>
+  </div>
+  <div>
+    <label for="imageUrl">Görsel Linki:</label>
+    <input type="url" id="imageUrl" required>
+  </div>
+  <div>
+    <label for="price">Fiyat:</label>
+    <input type="number" id="price" step="0.01" required>
+  </div>
+  <div>
+    <label for="discountedPrice">İndirimli Fiyat:</label>
+    <input type="number" id="discountedPrice" step="0.01">
+  </div>
+  <button type="submit">Kaydet</button>
 </form>
-</body>
-</html>
