@@ -3,57 +3,89 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>XAX Epin Store</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#090909;color:white;font-family:Arial,sans-serif}
-header{background:#111;padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292929;gap:15px;flex-wrap:wrap}
-.logo{color:#e0b443;font-size:28px;font-weight:bold}
-.logo span{color:#e63939}
-nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-nav a{color:white;text-decoration:none}
-button{cursor:pointer}
-.hero{padding:85px 20px;text-align:center;background:linear-gradient(135deg,#190808,#101010,#261600)}
-.hero h1{font-size:42px;margin-bottom:18px}
-.hero h1 span{color:#e0b443}
-.hero p{color:#bbb;margin-bottom:25px}
-.main-btn{background:#d62828;color:white;border:0;padding:14px 30px;border-radius:7px;font-size:16px}
-.container{padding:45px 7%}
-h2{margin-bottom:25px;color:#e0b443}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
-.card{background:#171717;border:1px solid #333;border-radius:12px;padding:25px;text-align:center;transition:.2s}
-.card:hover{border-color:#e0b443;transform:translateY(-5px)}
-.product-icon{font-size:43px;margin-bottom:15px}
-.card h3{margin-bottom:12px}
-.price{color:#e0b443;font-size:22px;margin:15px 0;font-weight:bold}
-.card button,.small-btn{background:#c92828;color:white;border:0;border-radius:6px;padding:11px 20px}
-footer{text-align:center;padding:30px;background:#111;color:#888;margin-top:40px}
-#authArea{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-#adminPanel{display:none;background:#151515;border:1px solid #493b1c;border-radius:12px;padding:22px;margin:25px 7%}
-#adminPanel h2{margin-bottom:15px}
-.panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.panel-box{background:#202020;padding:16px;border-radius:9px}
-input,select,textarea{width:100%;padding:11px;margin:7px 0 12px;background:#090909;color:white;border:1px solid #444;border-radius:6px}
-label{font-size:13px;color:#ccc}
-.panel-box button{margin:4px 3px 4px 0}
-.secondary{background:#555!important}
-.danger{background:#9d2020!important}
-#authModal{display:none;position:fixed;inset:0;background:#000c;z-index:10;align-items:center;justify-content:center;padding:15px}
-.modal{background:#171717;border:1px solid #555;border-radius:12px;padding:25px;width:100%;max-width:400px}
-.modal h2{margin-bottom:15px}
-.modal button{margin-top:5px}
-.product-actions{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
-.muted{color:#aaa;font-size:13px}
-.status{color:#e0b443;font-size:13px;margin-top:8px}
-#adminList{margin-top:10px}
-.admin-row{background:#292929;padding:10px;border-radius:6px;margin:7px 0;overflow-wrap:anywhere}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#e4b94f;--red:#d83232;--bg:#090909;--panel:#151515;--line:#303030}
+body{background:var(--bg);color:#fff;font-family:Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
+header{background:#111;border-bottom:1px solid var(--line);padding:17px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:900;color:var(--gold)}
+.logo span{color:var(--red)}
+nav{display:flex;gap:19px;align-items:center;flex-wrap:wrap}
+nav a{color:#ddd;text-decoration:none;font-size:14px}
+nav a:hover{color:var(--gold)}
+.btn{background:var(--red);color:white;padding:11px 17px;border-radius:7px;font-weight:bold}
+.btn.gold{background:var(--gold);color:#111}
+.btn.gray{background:#444}
+.btn.danger{background:#8d2222}
+.btn.small{padding:7px 11px;font-size:12px}
+.hero{text-align:center;padding:85px 15px;background:radial-gradient(ellipse at top,#462000 0,#180d09 42%,#090909 80%)}
+.hero h1{font-size:clamp(32px,6vw,55px);margin-bottom:15px}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#aaa;margin-bottom:24px}
+.notice{display:none;background:#291b08;color:#f4ce75;text-align:center;padding:12px}
+.container{padding:42px 6%;max-width:1500px;margin:auto}
+.section-title{color:var(--gold);font-size:25px;margin-bottom:22px}
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
+.cat{padding:9px 15px;border:1px solid #444;background:#171717;color:#ddd;border-radius:20px}
+.cat.active{background:var(--gold);color:#111;border-color:var(--gold)}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:17px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:21px;transition:.2s;position:relative}
+.card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.icon{font-size:43px;margin-bottom:14px}
+.card h3{margin-bottom:9px}
+.muted{color:#999;font-size:13px;line-height:1.5}
+.price{font-size:23px;color:var(--gold);font-weight:bold;margin:15px 0}
+.old{font-size:13px;color:#888;text-decoration:line-through;margin-left:7px}
+.stock{font-size:12px;color:#aaa}
+.card .btn{width:100%;margin-top:13px}
+.discount{position:absolute;right:12px;top:12px;background:var(--red);padding:5px 8px;border-radius:5px;font-size:12px}
+footer{background:#111;border-top:1px solid var(--line);padding:30px 6%;text-align:center;color:#888;margin-top:35px}
+#adminLogin,#adminPanel,#checkoutModal,#detailModal{display:none}
+.overlay{position:fixed;inset:0;background:#000d;z-index:20;overflow:auto;padding:18px;align-items:center;justify-content:center}
+.modal{background:#171717;border:1px solid #555;border-radius:13px;padding:23px;width:100%;max-width:480px;margin:auto}
+.modal h2{color:var(--gold);margin-bottom:18px}
+.field{margin:12px 0}
+.field label{display:block;color:#bbb;font-size:13px;margin-bottom:6px}
+input,select,textarea{width:100%;padding:11px;background:#090909;color:white;border:1px solid #444;border-radius:6px}
+textarea{min-height:75px;resize:vertical}
+.modal .btn{width:100%;margin-top:8px}
+#adminPanel{padding:25px 6%;background:#0e0e0e;border-top:1px solid #59471f}
+.admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+.admin-top h2{color:var(--gold)}
+.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:12px;margin-bottom:20px}
+.tab{white-space:nowrap;background:#222;color:#ddd;padding:11px 15px;border-radius:7px}
+.tab.active{background:var(--gold);color:#111;font-weight:bold}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px;margin-bottom:23px}
+.stat{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:19px}
+.stat strong{display:block;font-size:25px;color:var(--gold);margin-top:8px}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px}
+.box{background:#191919;border:1px solid #333;border-radius:10px;padding:17px;margin-bottom:15px}
+.box h3{color:var(--gold);margin-bottom:13px}
+.box .btn{margin:4px 3px 4px 0}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:550px}
+th,td{text-align:left;padding:12px;border-bottom:1px solid #333;font-size:13px}
+th{color:var(--gold)}
+.row-actions{display:flex;gap:5px;flex-wrap:wrap}
+.empty{padding:25px;text-align:center;color:#888}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#252525;border:1px solid var(--gold);padding:13px 20px;border-radius:8px;display:none;z-index:99}
 @media(max-width:600px){
- header{flex-direction:column}
+ header{justify-content:center}
  nav{justify-content:center}
- .hero h1{font-size:30px}
- .container{padding:35px 5%}
- #adminPanel{margin:20px 5%}
+ .hero{padding:60px 15px}
+ .container{padding:30px 5%}
+ #adminPanel{padding:22px 5%}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card{padding:13px}
+ .card h3{font-size:14px}
+ .price{font-size:18px}
+ .card .btn{padding:9px 5px;font-size:12px}
 }
 </style>
 </head>
@@ -65,401 +97,342 @@ label{font-size:13px;color:#ccc}
   <a href="#anasayfa">Ana Sayfa</a>
   <a href="#urunler">Ürünler</a>
   <a href="#iletisim">İletişim</a>
-  <span id="authArea">
-   <button class="small-btn" onclick="openAuth()">Giriş / Kayıt</button>
-  </span>
+  <button class="btn small" onclick="openLogin()">Yönetici Girişi</button>
  </nav>
 </header>
+
+<div class="notice" id="notice"></div>
 
 <section class="hero" id="anasayfa">
  <h1>XAX <span>EPIN STORE</span></h1>
  <p>Dijital oyun dünyasına hoş geldin!</p>
- <button class="main-btn" onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'})">Ürünleri Keşfet</button>
-</section>
-
-<section id="adminPanel">
- <h2>⚙️ Yönetim Paneli</h2>
- <p class="muted" id="roleText"></p>
- <div class="panel-grid" style="margin-top:18px">
-
-  <div class="panel-box">
-   <h3>📦 Ürün Yönetimi</h3>
-   <label>Ürün adı</label>
-   <input id="pName" placeholder="Steam 5 Dolar">
-   <label>Fiyat (TL)</label>
-   <input id="pPrice" placeholder="150">
-   <label>İkon / Emoji</label>
-   <input id="pIcon" value="🎮">
-   <label>Kategori</label>
-   <select id="pCategory"></select>
-   <label>Açıklama</label>
-   <textarea id="pDescription" placeholder="Ürün açıklaması"></textarea>
-   <button class="small-btn" onclick="saveProduct()">Ürünü Kaydet</button>
-   <button class="small-btn secondary" onclick="resetProductForm()">Temizle</button>
-   <p class="status" id="productStatus"></p>
-  </div>
-
-  <div class="panel-box">
-   <h3>📁 Kategori Yönetimi</h3>
-   <label>Yeni kategori adı</label>
-   <input id="categoryName" placeholder="Steam Cüzdan Kodları">
-   <button class="small-btn" onclick="addCategory()">Kategori Ekle</button>
-   <div id="categoryList"></div>
-   <p class="status" id="categoryStatus"></p>
-  </div>
-
-  <div class="panel-box" id="founderBox" style="display:none">
-   <h3>👑 Admin Yönetimi</h3>
-   <p class="muted">Admin olacak kişinin sitede kayıtlı hesabının UID'sini gir.</p>
-   <label>Kullanıcı UID</label>
-   <input id="newAdminUid" placeholder="Firebase Authentication UID">
-   <button class="small-btn" onclick="addAdmin()">Admin Ata</button>
-   <div id="adminList"></div>
-   <p class="status" id="adminStatus"></p>
-  </div>
- </div>
+ <button class="btn gold" onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'})">Ürünleri Keşfet</button>
 </section>
 
 <main class="container" id="urunler">
- <h2>🔥 Ürünler</h2>
- <div id="products" class="products">
-  <p class="muted">Ürünler yükleniyor...</p>
- </div>
+ <h2 class="section-title">🔥 Mağaza Ürünleri</h2>
+ <div class="categories" id="categories"></div>
+ <div class="products" id="products"></div>
 </main>
+
+<section id="adminPanel">
+ <div class="admin-top">
+  <h2>⚙️ XAX Yönetim Merkezi</h2>
+  <button class="btn danger small" onclick="logout()">Çıkış Yap</button>
+ </div>
+ <div class="tabs">
+  <button class="tab active" onclick="tab('overview',this)">📊 Genel Bakış</button>
+  <button class="tab" onclick="tab('productTab',this)">📦 Ürünler</button>
+  <button class="tab" onclick="tab('categoryTab',this)">📁 Kategoriler</button>
+  <button class="tab" onclick="tab('orderTab',this)">🛒 Siparişler</button>
+  <button class="tab" onclick="tab('couponTab',this)">🎟️ Kuponlar</button>
+  <button class="tab" onclick="tab('announcementTab',this)">📢 Duyurular</button>
+  <button class="tab" onclick="tab('settingsTab',this)">⚙️ Ayarlar</button>
+  <button class="tab" onclick="tab('backupTab',this)">💾 Yedekleme</button>
+ </div>
+
+ <div id="overview" class="tab-content active">
+  <div class="stats">
+   <div class="stat">Toplam ürün<strong id="sProducts">0</strong></div>
+   <div class="stat">Kategori<strong id="sCategories">0</strong></div>
+   <div class="stat">Sipariş<strong id="sOrders">0</strong></div>
+   <div class="stat">Bekleyen sipariş<strong id="sPending">0</strong></div>
+   <div class="stat">Toplam sipariş tutarı<strong id="sRevenue">0 TL</strong></div>
+  </div>
+  <div class="box">
+   <h3>Son Siparişler</h3>
+   <div id="recentOrders"></div>
+  </div>
+  <div class="box">
+   <h3>Mağaza Durumu</h3>
+   <p class="muted">Bu panelin verileri bu tarayıcıda saklanır. Gerçek müşterilerle ortak veri paylaşımı için sunucu gerekir.</p>
+  </div>
+ </div>
+
+ <div id="productTab" class="tab-content">
+  <div class="admin-grid">
+   <div class="box">
+    <h3 id="productFormTitle">Yeni Ürün Ekle</h3>
+    <input type="hidden" id="editId">
+    <div class="field"><label>Ürün adı</label><input id="pName" placeholder="Steam 5 Dolar"></div>
+    <div class="field"><label>Normal fiyat (TL)</label><input id="pPrice" type="number" min="0" placeholder="150"></div>
+    <div class="field"><label>İndirimli fiyat (isteğe bağlı)</label><input id="pSale" type="number" min="0" placeholder="120"></div>
+    <div class="field"><label>Stok miktarı</label><input id="pStock" type="number" min="0" value="10"></div>
+    <div class="field"><label>Emoji</label><input id="pIcon" value="🎮"></div>
+    <div class="field"><label>Kategori</label><select id="pCategory"></select></div>
+    <div class="field"><label>Açıklama</label><textarea id="pDescription"></textarea></div>
+    <button class="btn gold" onclick="saveProduct()">Kaydet</button>
+    <button class="btn gray" onclick="clearProduct()">Temizle</button>
+   </div>
+   <div class="box">
+    <h3>Ürün Bilgisi</h3>
+    <p class="muted">Ürün eklediğinde mağazada otomatik görüntülenir. Stok miktarı sıfır olan ürünler tükenmiş olarak gösterilir.</p>
+   </div>
+  </div>
+  <div class="box">
+   <h3>Ürün Listesi</h3>
+   <div class="table-wrap"><table><thead><tr><th>Ürün</th><th>Fiyat</th><th>Stok</th><th>Kategori</th><th>İşlem</th></tr></thead><tbody id="productRows"></tbody></table></div>
+  </div>
+ </div>
+
+ <div id="categoryTab" class="tab-content">
+  <div class="box">
+   <h3>Kategori Ekle</h3>
+   <input id="newCategory" placeholder="Kategori adı">
+   <button class="btn gold" onclick="addCategory()">Kategori Ekle</button>
+  </div>
+  <div class="box"><h3>Kategoriler</h3><div id="categoryRows"></div></div>
+ </div>
+
+ <div id="orderTab" class="tab-content">
+  <div class="box">
+   <h3>Sipariş Yönetimi</h3>
+   <p class="muted">Bu siparişler yalnızca bu tarayıcıdaki demo siparişlerdir.</p>
+   <div class="table-wrap"><table><thead><tr><th>Sipariş</th><th>Müşteri</th><th>Ürün</th><th>Tutar</th><th>Durum</th><th>İşlem</th></tr></thead><tbody id="orderRows"></tbody></table></div>
+  </div>
+ </div>
+
+ <div id="couponTab" class="tab-content">
+  <div class="box">
+   <h3>Kupon Oluştur</h3>
+   <div class="admin-grid">
+    <div class="field"><label>Kupon kodu</label><input id="couponCode" placeholder="XAX10"></div>
+    <div class="field"><label>İndirim (%)</label><input id="couponDiscount" type="number" min="1" max="90" placeholder="10"></div>
+   </div>
+   <button class="btn gold" onclick="addCoupon()">Kupon Oluştur</button>
+  </div>
+  <div class="box"><h3>Kupon Listesi</h3><div id="couponRows"></div></div>
+ </div>
+
+ <div id="announcementTab" class="tab-content">
+  <div class="box">
+   <h3>Ana Sayfa Duyurusu</h3>
+   <input id="announcementText" placeholder="Kampanya duyurusu...">
+   <button class="btn gold" onclick="saveAnnouncement()">Duyuruyu Yayınla</button>
+   <button class="btn danger" onclick="removeAnnouncement()">Duyuruyu Kaldır</button>
+  </div>
+ </div>
+
+ <div id="settingsTab" class="tab-content">
+  <div class="box">
+   <h3>Mağaza Ayarları</h3>
+   <div class="field"><label>Mağaza adı</label><input id="shopName"></div>
+   <div class="field"><label>Açıklama</label><input id="shopDescription"></div>
+   <div class="field"><label>İletişim bilgisi</label><input id="shopContact" placeholder="Instagram veya e-posta"></div>
+   <button class="btn gold" onclick="saveSettings()">Ayarları Kaydet</button>
+  </div>
+ </div>
+
+ <div id="backupTab" class="tab-content">
+  <div class="box">
+   <h3>Veri Yedekleme</h3>
+   <p class="muted">Mağaza verilerini JSON dosyası olarak indirebilir veya daha önce indirdiğin yedeği geri yükleyebilirsin.</p>
+   <button class="btn gold" onclick="exportData()">Yedek İndir</button>
+   <div class="field"><label>Yedek dosyası</label><input type="file" id="importFile" accept=".json"></div>
+   <button class="btn" onclick="importData()">Yedeği Geri Yükle</button>
+   <button class="btn danger" onclick="resetAll()">Tüm Verileri Sıfırla</button>
+  </div>
+ </div>
+</section>
 
 <footer id="iletisim">
  <div class="logo">XAX <span>EPIN</span></div>
+ <p id="footerDescription" style="margin:12px 0">Dijital alışverişin yeni adresi.</p>
+ <p id="footerContact"></p>
  <p style="margin-top:12px">© 2026 XAX Epin Store. Tüm hakları saklıdır.</p>
- <p style="margin-top:8px">Dijital alışverişin yeni adresi.</p>
 </footer>
 
-<div id="authModal">
+<div class="overlay" id="adminLogin">
  <div class="modal">
-  <h2 id="authTitle">Giriş Yap</h2>
-  <input id="authEmail" type="email" placeholder="E-posta">
-  <input id="authPassword" type="password" placeholder="Şifre">
-  <button class="small-btn" style="width:100%" onclick="login()">Giriş Yap</button>
-  <button class="small-btn secondary" style="width:100%" onclick="register()">Hesap Oluştur</button>
-  <button class="small-btn danger" style="width:100%" onclick="closeAuth()">Kapat</button>
-  <p class="status" id="authStatus"></p>
+  <h2>🔐 Yönetici Girişi</h2>
+  <div class="field"><label>Yönetici şifresi</label><input id="adminPassword" type="password" placeholder="Şifre" onkeydown="if(event.key==='Enter')login()"></div>
+  <button class="btn gold" onclick="login()">Giriş Yap</button>
+  <button class="btn gray" onclick="closeLogin()">Kapat</button>
+  <p class="muted" style="margin-top:12px">İlk giriş şifresi: XAX2026! (Giriş yaptıktan sonra değiştirebilirsin.)</p>
  </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
- getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
- onAuthStateChanged, signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
- getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc,
- doc, getDoc, setDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<div class="overlay" id="checkoutModal">
+ <div class="modal">
+  <h2>🛒 Sipariş Oluştur</h2>
+  <p id="checkoutProduct" class="muted"></p>
+  <div class="field"><label>Adın</label><input id="buyerName" placeholder="Ad soyad"></div>
+  <div class="field"><label>İletişim bilgisi</label><input id="buyerContact" placeholder="E-posta veya Instagram"></div>
+  <div class="field"><label>Kupon kodu (isteğe bağlı)</label><input id="buyerCoupon" placeholder="XAX10"></div>
+  <p id="checkoutTotal" class="price"></p>
+  <button class="btn gold" onclick="placeOrder()">Siparişi Kaydet</button>
+  <button class="btn gray" onclick="closeCheckout()">Vazgeç</button>
+  <p class="muted" style="margin-top:12px">Bu demo sipariş formu gerçek ödeme almaz ve satıcıya otomatik bildirim göndermez.</p>
+ </div>
+</div>
 
-const firebaseConfig = {
- apiKey: "AIzaSyBm7WliXB1S7dhJQRUSHka_4cIRoS4fS9c",
- authDomain: "xax-epin.firebaseapp.com",
- projectId: "xax-epin",
- storageBucket: "xax-epin.firebasestorage.app",
- messagingSenderId: "871228838650",
- appId: "1:871228838650:web:4c8cd1a09be15794916f43",
- measurementId: "G-6C6H8QJ5M3"
+<div id="toast"></div>
+
+<script>
+const KEY="xax_store_v1";
+const DEFAULT={
+ products:[
+  {id:"p1",name:"Steam 5 Dolar",price:200,sale:0,stock:10,icon:"🎮",category:"Steam",description:"Steam cüzdan kodu"},
+  {id:"p2",name:"Steam 10 Dolar",price:390,sale:0,stock:10,icon:"🎮",category:"Steam",description:"Steam cüzdan kodu"},
+  {id:"p3",name:"Steam 20 Dolar",price:750,sale:0,stock:10,icon:"🎮",category:"Steam",description:"Steam cüzdan kodu"}
+ ],
+ categories:["Steam"],
+ orders:[],
+ coupons:[],
+ announcement:"",
+ settings:{name:"XAX EPIN STORE",description:"Dijital alışverişin yeni adresi.",contact:""}
 };
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const FOUNDERS = [
- "T8Oh7DMy6LYsQhYt0VQqWFDlw4O2",
- "50aWfeTKMpbzbEC6PkcwZQhdjYm2"
-];
-
-let currentUser = null;
-let currentRole = "visitor";
-let editingProductId = null;
-let productsCache = [];
-let categoriesCache = [];
-
-const $ = id => document.getElementById(id);
-const safe = value => String(value ?? "").replace(/[&<>"']/g, c => ({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-
-window.openAuth = () => {
- $("authModal").style.display = "flex";
- $("authStatus").textContent = "";
-};
-window.closeAuth = () => $("authModal").style.display = "none";
-
-window.login = async () => {
- try {
-  await signInWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value);
-  $("authStatus").textContent = "Giriş başarılı!";
-  closeAuth();
- } catch(e) {
-  $("authStatus").textContent = authError(e);
- }
-};
-
-window.register = async () => {
- try {
-  await createUserWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value);
-  $("authStatus").textContent = "Hesabın oluşturuldu!";
-  closeAuth();
- } catch(e) {
-  $("authStatus").textContent = authError(e);
- }
-};
-
-function authError(e) {
- const errors = {
-  "auth/invalid-email":"E-posta adresini kontrol et.",
-  "auth/invalid-credential":"E-posta veya şifre hatalı.",
-  "auth/email-already-in-use":"Bu e-posta zaten kayıtlı.",
-  "auth/weak-password":"Şifre en az 6 karakter olmalı.",
-  "auth/too-many-requests":"Çok fazla deneme yapıldı. Daha sonra tekrar dene."
- };
- return errors[e.code] || "İşlem başarısız: " + e.message;
+let data=loadData(),logged=false,selectedProduct=null,activeCategory="Tümü";
+function loadData(){
+ try{const x=JSON.parse(localStorage.getItem(KEY));return x&&Array.isArray(x.products)?x:structuredClone(DEFAULT)}
+ catch(e){return structuredClone(DEFAULT)}
 }
-
-window.logout = async () => {
- await signOut(auth);
- $("adminPanel").style.display = "none";
-};
-
-onAuthStateChanged(auth, async user => {
- currentUser = user;
- currentRole = "visitor";
-
- if(user) {
-  try {
-   const snap = await getDoc(doc(db,"admins",user.uid));
-   if(snap.exists() && snap.data().active === true) {
-    currentRole = snap.data().role;
-   }
-  } catch(e) {
-   console.error(e);
-  }
-
-  $("authArea").innerHTML = `
-   <span class="muted">${safe(user.email)}</span>
-   <button class="small-btn secondary" onclick="logout()">Çıkış</button>`;
- } else {
-  $("authArea").innerHTML = `<button class="small-btn" onclick="openAuth()">Giriş / Kayıt</button>`;
- }
-
- const canManage = currentRole === "founder" || currentRole === "admin";
- $("adminPanel").style.display = canManage ? "block" : "none";
- $("founderBox").style.display = currentRole === "founder" ? "block" : "none";
- $("roleText").textContent = currentRole === "founder" ? "Kurucu hesabı" : "Admin hesabı";
-
- if(currentRole === "founder") loadAdmins();
- await loadCategories();
- await loadProducts();
-});
-
-async function loadProducts() {
- try {
-  const snap = await getDocs(collection(db,"products"));
-  productsCache = snap.docs.map(d => ({id:d.id,...d.data()}));
-  renderProducts();
- } catch(e) {
-  $("products").innerHTML = `<p class="muted">Ürünler yüklenemedi. Firebase kurallarını kontrol et.</p>`;
-  console.error(e);
- }
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2500)}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function money(v){return Number(v||0).toLocaleString("tr-TR")+" TL"}
+function openLogin(){document.getElementById("adminLogin").style.display="flex"}
+function closeLogin(){document.getElementById("adminLogin").style.display="none"}
+function login(){
+ if(document.getElementById("adminPassword").value==="XAX2026!"){
+  logged=true;closeLogin();document.getElementById("adminPanel").style.display="block";document.getElementById("adminPassword").value="";refreshAdmin();toast("Yönetim paneline hoş geldin!")
+ }else toast("Şifre hatalı!")
 }
-
-function renderProducts() {
- if(!productsCache.length) {
-  $("products").innerHTML = `<p class="muted">Henüz ürün eklenmemiş. Yönetim panelinden ürün ekleyebilirsin.</p>`;
-  return;
- }
-
- $("products").innerHTML = productsCache.map(p => `
-  <div class="card">
-   <div class="product-icon">${safe(p.icon || "🎮")}</div>
-   <h3>${safe(p.name)}</h3>
-   <p class="muted">${safe(p.category || "")}</p>
-   <div class="price">${p.price ? safe(p.price) + " TL" : "Fiyat Bekleniyor"}</div>
-   <p class="muted">${safe(p.description || "")}</p>
-   <div class="product-actions">
-    <button onclick="inspectProduct('${p.id}')">İncele</button>
-    ${currentRole === "founder" || currentRole === "admin" ? `
-     <button class="secondary" onclick="editProduct('${p.id}')">Düzenle</button>
-     <button class="danger" onclick="removeProduct('${p.id}')">Sil</button>
-    ` : ""}
-   </div>
-  </div>
- `).join("");
+function logout(){logged=false;document.getElementById("adminPanel").style.display="none";toast("Çıkış yapıldı")}
+function tab(id,button){
+ document.querySelectorAll(".tab-content").forEach(x=>x.classList.remove("active"));
+ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");button.classList.add("active")
 }
-
-window.inspectProduct = id => {
- const p = productsCache.find(x => x.id === id);
- if(p) alert(p.name + "\n" + (p.description || "Açıklama yok.") + "\nFiyat: " + (p.price ? p.price + " TL" : "Bekleniyor"));
-};
-
-window.resetProductForm = () => {
- editingProductId = null;
- $("pName").value = "";
- $("pPrice").value = "";
- $("pIcon").value = "🎮";
- $("pDescription").value = "";
- $("productStatus").textContent = "";
-};
-
-window.saveProduct = async () => {
- if(!["founder","admin"].includes(currentRole)) return;
- const name = $("pName").value.trim();
- const price = $("pPrice").value.trim();
- const icon = $("pIcon").value.trim() || "🎮";
- const category = $("pCategory").value;
- const description = $("pDescription").value.trim();
-
- if(!name) {
-  $("productStatus").textContent = "Ürün adı gerekli.";
-  return;
- }
- if(price && (!Number.isFinite(Number(price)) || Number(price) < 0)) {
-  $("productStatus").textContent = "Geçerli bir fiyat gir.";
-  return;
- }
-
- try {
-  const data = {name,price,icon,category,description,updatedAt:Date.now()};
-  if(editingProductId) {
-   await updateDoc(doc(db,"products",editingProductId),data);
-  } else {
-   await addDoc(collection(db,"products"),{...data,createdAt:Date.now()});
-  }
-  $("productStatus").textContent = "Ürün kaydedildi!";
-  resetProductForm();
-  await loadProducts();
- } catch(e) {
-  $("productStatus").textContent = "Kaydedilemedi: " + e.message;
- }
-};
-
-window.editProduct = id => {
- const p = productsCache.find(x => x.id === id);
- if(!p) return;
- editingProductId = id;
- $("pName").value = p.name || "";
- $("pPrice").value = p.price || "";
- $("pIcon").value = p.icon || "🎮";
- $("pCategory").value = p.category || "";
- $("pDescription").value = p.description || "";
- $("productStatus").textContent = "Düzenleme modu açık.";
- $("adminPanel").scrollIntoView({behavior:"smooth"});
-};
-
-window.removeProduct = async id => {
- if(!confirm("Bu ürünü silmek istediğine emin misin?")) return;
- try {
-  await deleteDoc(doc(db,"products",id));
-  await loadProducts();
- } catch(e) {
-  alert("Silinemedi: " + e.message);
- }
-};
-
-async function loadCategories() {
- try {
-  const snap = await getDocs(collection(db,"categories"));
-  categoriesCache = snap.docs.map(d => ({id:d.id,...d.data()}));
-  $("pCategory").innerHTML = categoriesCache.map(c =>
-   `<option value="${safe(c.name)}">${safe(c.name)}</option>`
-  ).join("") || `<option value="">Kategori yok</option>`;
-
-  $("categoryList").innerHTML = categoriesCache.map(c => `
-   <div class="admin-row">
-    ${safe(c.name)}
-    ${["founder","admin"].includes(currentRole) ?
-     `<button class="small-btn danger" onclick="removeCategory('${c.id}')">Sil</button>` : ""}
-   </div>
-  `).join("");
- } catch(e) {
-  console.error(e);
- }
+function renderStore(){
+ const cats=["Tümü",...data.categories];
+ document.getElementById("categories").innerHTML=cats.map(c=>`<button class="cat ${activeCategory===c?"active":""}" onclick="filterCategory('${esc(c)}')">${esc(c)}</button>`).join("");
+ const list=data.products.filter(p=>activeCategory==="Tümü"||p.category===activeCategory);
+ document.getElementById("products").innerHTML=list.length?list.map(p=>{
+  const price=Number(p.sale)>0?Number(p.sale):Number(p.price);
+  return `<article class="card">
+   ${Number(p.sale)>0?'<span class="discount">İNDİRİM</span>':""}
+   <div class="icon">${esc(p.icon||"🎮")}</div><h3>${esc(p.name)}</h3>
+   <p class="muted">${esc(p.category)}</p>
+   <div class="price">${money(price)} ${Number(p.sale)>0?`<span class="old">${money(p.price)}</span>`:""}</div>
+   <p class="stock">${Number(p.stock)>0?"Stok: "+Number(p.stock):"Stokta yok"}</p>
+   <p class="muted">${esc(p.description)}</p>
+   <button class="btn" ${Number(p.stock)<=0?"disabled":""} onclick="openCheckout('${p.id}')">${Number(p.stock)>0?"Sipariş Ver":"Tükendi"}</button>
+  </article>`
+ }).join(""):'<div class="empty">Bu kategoride ürün bulunamadı.</div>';
+ document.getElementById("notice").textContent=data.announcement;
+ document.getElementById("notice").style.display=data.announcement?"block":"none";
+ document.getElementById("footerDescription").textContent=data.settings.description||"";
+ document.getElementById("footerContact").textContent=data.settings.contact?"İletişim: "+data.settings.contact:"";
 }
-
-window.addCategory = async () => {
- if(!["founder","admin"].includes(currentRole)) return;
- const name = $("categoryName").value.trim();
- if(!name) {
-  $("categoryStatus").textContent = "Kategori adı gir.";
-  return;
- }
- try {
-  await addDoc(collection(db,"categories"),{name,createdAt:Date.now()});
-  $("categoryName").value = "";
-  $("categoryStatus").textContent = "Kategori eklendi.";
-  await loadCategories();
- } catch(e) {
-  $("categoryStatus").textContent = "Hata: " + e.message;
- }
-};
-
-window.removeCategory = async id => {
- if(!confirm("Kategoriyi silmek istiyor musun?")) return;
- try {
-  await deleteDoc(doc(db,"categories",id));
-  await loadCategories();
- } catch(e) {
-  alert("Silinemedi: " + e.message);
- }
-};
-
-async function loadAdmins() {
- if(currentRole !== "founder") return;
- try {
-  const snap = await getDocs(collection(db,"admins"));
-  $("adminList").innerHTML = snap.docs.map(d => {
-   const a = d.data();
-   const protectedFounder = FOUNDERS.includes(d.id);
-   return `<div class="admin-row">
-    <b>${protectedFounder ? "Kurucu" : "Admin"}</b><br>
-    <span class="muted">${safe(d.id)}</span><br>
-    Durum: ${a.active ? "Aktif" : "Pasif"}
-    ${!protectedFounder ? `<button class="small-btn danger" onclick="removeAdmin('${d.id}')">Yetkiyi Kaldır</button>` : ""}
-   </div>`;
-  }).join("");
- } catch(e) {
-  $("adminStatus").textContent = "Adminler yüklenemedi: " + e.message;
- }
+function filterCategory(c){activeCategory=c;renderStore()}
+function refreshAdmin(){
+ document.getElementById("sProducts").textContent=data.products.length;
+ document.getElementById("sCategories").textContent=data.categories.length;
+ document.getElementById("sOrders").textContent=data.orders.length;
+ document.getElementById("sPending").textContent=data.orders.filter(o=>o.status==="Bekliyor").length;
+ document.getElementById("sRevenue").textContent=money(data.orders.filter(o=>o.status!=="İptal").reduce((s,o)=>s+Number(o.total),0));
+ document.getElementById("recentOrders").innerHTML=data.orders.slice(-5).reverse().map(o=>`<p class="muted">${esc(o.id)} · ${esc(o.name)} · ${money(o.total)} · ${esc(o.status)}</p>`).join("")||'<p class="empty">Henüz sipariş yok.</p>';
+ document.getElementById("pCategory").innerHTML=data.categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+ document.getElementById("productRows").innerHTML=data.products.map(p=>`<tr><td>${esc(p.icon)} ${esc(p.name)}</td><td>${money(p.sale||p.price)}</td><td>${p.stock}</td><td>${esc(p.category)}</td><td><div class="row-actions"><button class="btn small gold" onclick="editProduct('${p.id}')">Düzenle</button><button class="btn small danger" onclick="deleteProduct('${p.id}')">Sil</button></div></td></tr>`).join("")||'<tr><td colspan="5">Ürün yok.</td></tr>';
+ document.getElementById("categoryRows").innerHTML=data.categories.map(c=>`<div class="admin-row box">${esc(c)} <button class="btn small danger" onclick="deleteCategory('${esc(c)}')">Sil</button></div>`).join("")||"Kategori yok.";
+ document.getElementById("orderRows").innerHTML=data.orders.map(o=>`<tr><td>${esc(o.id)}</td><td>${esc(o.name)}<br>${esc(o.contact)}</td><td>${esc(o.product)}</td><td>${money(o.total)}</td><td>${esc(o.status)}</td><td><select onchange="changeOrder('${o.id}',this.value)">${["Bekliyor","Onaylandı","Tamamlandı","İptal"].map(s=>`<option ${o.status===s?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")||'<tr><td colspan="6">Sipariş yok.</td></tr>';
+ document.getElementById("couponRows").innerHTML=data.coupons.map(c=>`<div class="admin-row box">${esc(c.code)} — %${c.discount} <button class="btn small danger" onclick="deleteCoupon('${c.code}')">Sil</button></div>`).join("")||"Kupon yok.";
+ document.getElementById("shopName").value=data.settings.name||"";
+ document.getElementById("shopDescription").value=data.settings.description||"";
+ document.getElementById("shopContact").value=data.settings.contact||"";
 }
-
-window.addAdmin = async () => {
- if(currentRole !== "founder") return;
- const uid = $("newAdminUid").value.trim();
- if(!uid) {
-  $("adminStatus").textContent = "UID girmen gerekiyor.";
-  return;
+function saveProduct(){
+ const name=document.getElementById("pName").value.trim(),price=Number(document.getElementById("pPrice").value),sale=Number(document.getElementById("pSale").value),stock=Number(document.getElementById("pStock").value);
+ const id=document.getElementById("editId").value,category=document.getElementById("pCategory").value;
+ if(!name||!Number.isFinite(price)||price<0||!Number.isFinite(stock)||stock<0)return toast("Ürün bilgilerini kontrol et.");
+ if(sale<0||(sale>0&&sale>=price))return toast("İndirimli fiyat normal fiyattan düşük olmalı.");
+ if(!category)return toast("Önce kategori oluştur.");
+ const p={id:id||"p"+Date.now(),name,price,sale,stock,icon:document.getElementById("pIcon").value||"🎮",category,description:document.getElementById("pDescription").value};
+ if(id)data.products=data.products.map(x=>x.id===id?p:x);else data.products.push(p);
+ persist();clearProduct();refreshAdmin();renderStore();toast("Ürün kaydedildi.")
+}
+function editProduct(id){
+ const p=data.products.find(x=>x.id===id);if(!p)return;
+ document.getElementById("editId").value=p.id;
+ document.getElementById("pName").value=p.name;
+ document.getElementById("pPrice").value=p.price;
+ document.getElementById("pSale").value=p.sale||"";
+ document.getElementById("pStock").value=p.stock;
+ document.getElementById("pIcon").value=p.icon;
+ document.getElementById("pCategory").value=p.category;
+ document.getElementById("pDescription").value=p.description||"";
+ document.getElementById("productFormTitle").textContent="Ürünü Düzenle";
+ document.getElementById("productTab").scrollIntoView({behavior:"smooth"})
+}
+function clearProduct(){
+ ["editId","pName","pPrice","pSale","pDescription"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("pStock").value=10;document.getElementById("pIcon").value="🎮";document.getElementById("productFormTitle").textContent="Yeni Ürün Ekle"
+}
+function deleteProduct(id){if(!confirm("Ürün silinsin mi?"))return;data.products=data.products.filter(p=>p.id!==id);persist();refreshAdmin();renderStore();toast("Ürün silindi")}
+function addCategory(){
+ const c=document.getElementById("newCategory").value.trim();if(!c)return toast("Kategori adı gir.");
+ if(data.categories.some(x=>x.toLowerCase()===c.toLowerCase()))return toast("Bu kategori zaten var.");
+ data.categories.push(c);document.getElementById("newCategory").value="";persist();refreshAdmin();renderStore();toast("Kategori eklendi.")
+}
+function deleteCategory(c){
+ if(data.products.some(p=>p.category===c))return toast("Önce bu kategorideki ürünleri başka kategoriye taşı.");
+ if(!confirm("Kategori silinsin mi?"))return;
+ data.categories=data.categories.filter(x=>x!==c);persist();refreshAdmin();renderStore()
+}
+function openCheckout(id){
+ selectedProduct=data.products.find(p=>p.id===id);if(!selectedProduct)return;
+ document.getElementById("checkoutProduct").textContent=selectedProduct.name;
+ document.getElementById("buyerName").value="";
+ document.getElementById("buyerContact").value="";
+ document.getElementById("buyerCoupon").value="";
+ document.getElementById("checkoutTotal").textContent=money(selectedProduct.sale||selectedProduct.price);
+ document.getElementById("checkoutModal").style.display="flex"
+}
+function closeCheckout(){document.getElementById("checkoutModal").style.display="none"}
+function placeOrder(){
+ if(!selectedProduct||selectedProduct.stock<=0)return toast("Ürün stokta yok.");
+ const name=document.getElementById("buyerName").value.trim(),contact=document.getElementById("buyerContact").value.trim();
+ if(!name||!contact)return toast("Ad ve iletişim bilgisi gerekli.");
+ let total=Number(selectedProduct.sale||selectedProduct.price),code=document.getElementById("buyerCoupon").value.trim().toUpperCase();
+ if(code){
+  const coupon=data.coupons.find(c=>c.code===code);
+  if(!coupon)return toast("Kupon geçersiz.");
+  total=Math.round(total*(1-coupon.discount/100))
  }
- if(FOUNDERS.includes(uid)) {
-  $("adminStatus").textContent = "Kurucu hesapları değiştirilemez.";
-  return;
- }
- try {
-  await setDoc(doc(db,"admins",uid),{role:"admin",active:true});
-  $("newAdminUid").value = "";
-  $("adminStatus").textContent = "Admin başarıyla atandı.";
-  await loadAdmins();
- } catch(e) {
-  $("adminStatus").textContent = "Admin atanamadı: " + e.message;
- }
-};
-
-window.removeAdmin = async uid => {
- if(currentRole !== "founder" || FOUNDERS.includes(uid)) return;
- if(!confirm("Bu kullanıcının admin yetkisini kaldırmak istiyor musun?")) return;
- try {
-  await deleteDoc(doc(db,"admins",uid));
-  await loadAdmins();
- } catch(e) {
-  $("adminStatus").textContent = "Yetki kaldırılamadı: " + e.message;
- }
-};
+ data.orders.push({id:"XAX-"+Date.now().toString().slice(-7),name,contact,product:selectedProduct.name,total,status:"Bekliyor",date:new Date().toISOString()});
+ selectedProduct.stock--;persist();closeCheckout();renderStore();if(logged)refreshAdmin();toast("Sipariş bu tarayıcıya kaydedildi.")
+}
+function changeOrder(id,status){const o=data.orders.find(x=>x.id===id);if(o){o.status=status;persist();refreshAdmin();toast("Sipariş güncellendi")}}
+function addCoupon(){
+ const code=document.getElementById("couponCode").value.trim().toUpperCase(),discount=Number(document.getElementById("couponDiscount").value);
+ if(!code||discount<1||discount>90)return toast("Kupon bilgilerini kontrol et.");
+ if(data.coupons.some(c=>c.code===code))return toast("Bu kupon zaten var.");
+ data.coupons.push({code,discount});persist();refreshAdmin();document.getElementById("couponCode").value="";document.getElementById("couponDiscount").value="";toast("Kupon eklendi.")
+}
+function deleteCoupon(code){data.coupons=data.coupons.filter(c=>c.code!==code);persist();refreshAdmin()}
+function saveAnnouncement(){data.announcement=document.getElementById("announcementText").value.trim();persist();renderStore();toast("Duyuru yayınlandı")}
+function removeAnnouncement(){data.announcement="";document.getElementById("announcementText").value="";persist();renderStore();toast("Duyuru kaldırıldı")}
+function saveSettings(){
+ data.settings={name:document.getElementById("shopName").value,description:document.getElementById("shopDescription").value,contact:document.getElementById("shopContact").value};
+ persist();renderStore();toast("Ayarlar kaydedildi.")
+}
+function exportData(){
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="xax-store-yedek.json";a.click();URL.revokeObjectURL(url);toast("Yedek indirildi.")
+}
+function importData(){
+ const file=document.getElementById("importFile").files[0];if(!file)return toast("Dosya seç.");
+ const reader=new FileReader();reader.onload=()=>{
+  try{
+   const x=JSON.parse(reader.result);
+   if(!Array.isArray(x.products)||!Array.isArray(x.categories)||!Array.isArray(x.orders)||!Array.isArray(x.coupons))throw Error();
+   data=x;persist();refreshAdmin();renderStore();toast("Yedek geri yüklendi.")
+  }catch(e){toast("Yedek dosyası geçersiz.")}
+ };reader.readAsText(file)
+}
+function resetAll(){if(!confirm("Bütün ürünler, siparişler ve ayarlar silinecek. Emin misin?"))return;data=structuredClone(DEFAULT);persist();refreshAdmin();renderStore();toast("Mağaza sıfırlandı")}
+renderStore();
 </script>
 </body>
 </html>
