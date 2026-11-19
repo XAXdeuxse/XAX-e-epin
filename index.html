@@ -11,81 +11,90 @@
 body{background:var(--bg);color:#fff;font-family:Arial,sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer;border:0}
-header{background:#111;border-bottom:1px solid var(--line);padding:17px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+header{background:#111;border-bottom:1px solid var(--line);padding:16px 5%;display:flex;justify-content:space-between;align-items:center;gap:13px;flex-wrap:wrap}
 .logo{font-size:27px;font-weight:900;color:var(--gold)}
 .logo span{color:var(--red)}
-nav{display:flex;gap:19px;align-items:center;flex-wrap:wrap}
+nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 nav a{color:#ddd;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--gold)}
-.btn{background:var(--red);color:white;padding:11px 17px;border-radius:7px;font-weight:bold}
+.btn{background:var(--red);color:white;padding:11px 16px;border-radius:7px;font-weight:bold}
 .btn.gold{background:var(--gold);color:#111}
 .btn.gray{background:#444}
 .btn.danger{background:#8d2222}
-.btn.small{padding:7px 11px;font-size:12px}
-.hero{text-align:center;padding:85px 15px;background:radial-gradient(ellipse at top,#462000 0,#180d09 42%,#090909 80%)}
+.btn.small{padding:7px 10px;font-size:12px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.hero{text-align:center;padding:75px 15px;background:radial-gradient(ellipse at top,#462000 0,#180d09 42%,#090909 80%)}
 .hero h1{font-size:clamp(32px,6vw,55px);margin-bottom:15px}
 .hero h1 span{color:var(--gold)}
 .hero p{color:#aaa;margin-bottom:24px}
 .notice{display:none;background:#291b08;color:#f4ce75;text-align:center;padding:12px}
-.container{padding:42px 6%;max-width:1500px;margin:auto}
-.section-title{color:var(--gold);font-size:25px;margin-bottom:22px}
+.container{padding:38px 5%;max-width:1500px;margin:auto}
+.section-title{color:var(--gold);font-size:25px;margin-bottom:20px}
 .categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
 .cat{padding:9px 15px;border:1px solid #444;background:#171717;color:#ddd;border-radius:20px}
 .cat.active{background:var(--gold);color:#111;border-color:var(--gold)}
 .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:17px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:21px;transition:.2s;position:relative}
+.card,.box,.stat{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:18px}
+.card{transition:.2s;position:relative}
 .card:hover{border-color:var(--gold);transform:translateY(-3px)}
-.icon{font-size:43px;margin-bottom:14px}
+.icon{font-size:42px;margin-bottom:13px}
 .card h3{margin-bottom:9px}
 .muted{color:#999;font-size:13px;line-height:1.5}
-.price{font-size:23px;color:var(--gold);font-weight:bold;margin:15px 0}
+.price{font-size:23px;color:var(--gold);font-weight:bold;margin:14px 0}
 .old{font-size:13px;color:#888;text-decoration:line-through;margin-left:7px}
 .stock{font-size:12px;color:#aaa}
-.card .btn{width:100%;margin-top:13px}
+.card .btn{width:100%;margin-top:10px}
 .discount{position:absolute;right:12px;top:12px;background:var(--red);padding:5px 8px;border-radius:5px;font-size:12px}
 footer{background:#111;border-top:1px solid var(--line);padding:30px 6%;text-align:center;color:#888;margin-top:35px}
-#adminLogin,#adminPanel,#checkoutModal,#detailModal{display:none}
-.overlay{position:fixed;inset:0;background:#000d;z-index:20;overflow:auto;padding:18px;align-items:center;justify-content:center}
-.modal{background:#171717;border:1px solid #555;border-radius:13px;padding:23px;width:100%;max-width:480px;margin:auto}
-.modal h2{color:var(--gold);margin-bottom:18px}
+.overlay{display:none;position:fixed;inset:0;background:#000d;z-index:20;overflow:auto;padding:18px;align-items:center;justify-content:center}
+.modal{background:#171717;border:1px solid #555;border-radius:13px;padding:23px;width:100%;max-width:500px;margin:auto}
+.modal h2{color:var(--gold);margin-bottom:17px}
 .field{margin:12px 0}
 .field label{display:block;color:#bbb;font-size:13px;margin-bottom:6px}
 input,select,textarea{width:100%;padding:11px;background:#090909;color:white;border:1px solid #444;border-radius:6px}
 textarea{min-height:75px;resize:vertical}
-.modal .btn{width:100%;margin-top:8px}
-#adminPanel{padding:25px 6%;background:#0e0e0e;border-top:1px solid #59471f}
+.modal .btn{margin:5px 3px 0 0}
+#adminPanel{display:none;padding:25px 5%;background:#0e0e0e;border-top:1px solid #59471f}
 .admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}
 .admin-top h2{color:var(--gold)}
 .tabs{display:flex;gap:8px;overflow:auto;padding-bottom:12px;margin-bottom:20px}
-.tab{white-space:nowrap;background:#222;color:#ddd;padding:11px 15px;border-radius:7px}
+.tab{white-space:nowrap;background:#222;color:#ddd;padding:11px 14px;border-radius:7px}
 .tab.active{background:var(--gold);color:#111;font-weight:bold}
 .tab-content{display:none}
 .tab-content.active{display:block}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px;margin-bottom:23px}
-.stat{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:19px}
-.stat strong{display:block;font-size:25px;color:var(--gold);margin-top:8px}
-.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px}
-.box{background:#191919;border:1px solid #333;border-radius:10px;padding:17px;margin-bottom:15px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin-bottom:20px}
+.stat strong{display:block;font-size:24px;color:var(--gold);margin-top:8px}
+.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.box{margin-bottom:15px}
 .box h3{color:var(--gold);margin-bottom:13px}
 .box .btn{margin:4px 3px 4px 0}
 .table-wrap{overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:550px}
-th,td{text-align:left;padding:12px;border-bottom:1px solid #333;font-size:13px}
+th,td{text-align:left;padding:11px;border-bottom:1px solid #333;font-size:13px}
 th{color:var(--gold)}
 .row-actions{display:flex;gap:5px;flex-wrap:wrap}
-.empty{padding:25px;text-align:center;color:#888}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#252525;border:1px solid var(--gold);padding:13px 20px;border-radius:8px;display:none;z-index:99}
-@media(max-width:600px){
+.empty{padding:24px;text-align:center;color:#888}
+.line{height:1px;background:#333;margin:15px 0}
+.badge{display:inline-block;padding:5px 8px;border-radius:5px;background:#292929;color:#ddd;font-size:12px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#252525;border:1px solid var(--gold);padding:13px 20px;border-radius:8px;display:none;z-index:99;max-width:90%;text-align:center}
+.cart-item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #333}
+.cart-item-info{flex:1}
+.quantity{display:flex;align-items:center;gap:8px}
+.quantity button{background:#333;color:white;padding:6px 10px;border-radius:5px}
+.profile-card{background:#1b1b1b;border:1px solid #333;border-radius:10px;padding:15px;margin:12px 0}
+.warning{background:#30220b;color:#f2cf79;padding:12px;border-radius:8px;font-size:12px;line-height:1.5;margin:12px 0}
+@media(max-width:650px){
  header{justify-content:center}
  nav{justify-content:center}
- .hero{padding:60px 15px}
- .container{padding:30px 5%}
- #adminPanel{padding:22px 5%}
- .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .card{padding:13px}
+ .hero{padding:55px 15px}
+ .container{padding:28px 4%}
+ #adminPanel{padding:20px 4%}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .card{padding:12px}
  .card h3{font-size:14px}
  .price{font-size:18px}
  .card .btn{padding:9px 5px;font-size:12px}
+ .cart-item{align-items:flex-start;flex-wrap:wrap}
 }
 </style>
 </head>
@@ -97,7 +106,9 @@ th{color:var(--gold)}
   <a href="#anasayfa">Ana Sayfa</a>
   <a href="#urunler">Ürünler</a>
   <a href="#iletisim">İletişim</a>
-  <button class="btn small" onclick="openLogin()">Yönetici Girişi</button>
+  <button class="btn small gold" onclick="openCart()">🛒 Sepet <span id="cartCount">0</span></button>
+  <button class="btn small" onclick="openAccount()" id="accountButton">Hesabım</button>
+  <button class="btn small" onclick="openLogin()">Yönetici</button>
  </nav>
 </header>
 
@@ -136,17 +147,12 @@ th{color:var(--gold)}
    <div class="stat">Toplam ürün<strong id="sProducts">0</strong></div>
    <div class="stat">Kategori<strong id="sCategories">0</strong></div>
    <div class="stat">Sipariş<strong id="sOrders">0</strong></div>
-   <div class="stat">Bekleyen sipariş<strong id="sPending">0</strong></div>
-   <div class="stat">Toplam sipariş tutarı<strong id="sRevenue">0 TL</strong></div>
+   <div class="stat">Bekleyen<strong id="sPending">0</strong></div>
+   <div class="stat">Sipariş tutarı<strong id="sRevenue">0 TL</strong></div>
+   <div class="stat">Demo yükleme<strong id="sTopups">0 TL</strong></div>
   </div>
-  <div class="box">
-   <h3>Son Siparişler</h3>
-   <div id="recentOrders"></div>
-  </div>
-  <div class="box">
-   <h3>Mağaza Durumu</h3>
-   <p class="muted">Bu panelin verileri bu tarayıcıda saklanır. Gerçek müşterilerle ortak veri paylaşımı için sunucu gerekir.</p>
-  </div>
+  <div class="box"><h3>Son Siparişler</h3><div id="recentOrders"></div></div>
+  <div class="box"><h3>Mağaza Durumu</h3><p class="muted">Bu sürüm tarayıcı tabanlı demo sistemidir. Veriler yalnızca bu tarayıcıda saklanır.</p></div>
  </div>
 
  <div id="productTab" class="tab-content">
@@ -155,8 +161,8 @@ th{color:var(--gold)}
     <h3 id="productFormTitle">Yeni Ürün Ekle</h3>
     <input type="hidden" id="editId">
     <div class="field"><label>Ürün adı</label><input id="pName" placeholder="Steam 5 Dolar"></div>
-    <div class="field"><label>Normal fiyat (TL)</label><input id="pPrice" type="number" min="0" placeholder="150"></div>
-    <div class="field"><label>İndirimli fiyat (isteğe bağlı)</label><input id="pSale" type="number" min="0" placeholder="120"></div>
+    <div class="field"><label>Normal fiyat (TL)</label><input id="pPrice" type="number" min="0"></div>
+    <div class="field"><label>İndirimli fiyat</label><input id="pSale" type="number" min="0"></div>
     <div class="field"><label>Stok miktarı</label><input id="pStock" type="number" min="0" value="10"></div>
     <div class="field"><label>Emoji</label><input id="pIcon" value="🎮"></div>
     <div class="field"><label>Kategori</label><select id="pCategory"></select></div>
@@ -164,15 +170,8 @@ th{color:var(--gold)}
     <button class="btn gold" onclick="saveProduct()">Kaydet</button>
     <button class="btn gray" onclick="clearProduct()">Temizle</button>
    </div>
-   <div class="box">
-    <h3>Ürün Bilgisi</h3>
-    <p class="muted">Ürün eklediğinde mağazada otomatik görüntülenir. Stok miktarı sıfır olan ürünler tükenmiş olarak gösterilir.</p>
-   </div>
   </div>
-  <div class="box">
-   <h3>Ürün Listesi</h3>
-   <div class="table-wrap"><table><thead><tr><th>Ürün</th><th>Fiyat</th><th>Stok</th><th>Kategori</th><th>İşlem</th></tr></thead><tbody id="productRows"></tbody></table></div>
-  </div>
+  <div class="box"><h3>Ürün Listesi</h3><div class="table-wrap"><table><thead><tr><th>Ürün</th><th>Fiyat</th><th>Stok</th><th>Kategori</th><th>İşlem</th></tr></thead><tbody id="productRows"></tbody></table></div></div>
  </div>
 
  <div id="categoryTab" class="tab-content">
@@ -185,11 +184,7 @@ th{color:var(--gold)}
  </div>
 
  <div id="orderTab" class="tab-content">
-  <div class="box">
-   <h3>Sipariş Yönetimi</h3>
-   <p class="muted">Bu siparişler yalnızca bu tarayıcıdaki demo siparişlerdir.</p>
-   <div class="table-wrap"><table><thead><tr><th>Sipariş</th><th>Müşteri</th><th>Ürün</th><th>Tutar</th><th>Durum</th><th>İşlem</th></tr></thead><tbody id="orderRows"></tbody></table></div>
-  </div>
+  <div class="box"><h3>Sipariş Yönetimi</h3><div class="table-wrap"><table><thead><tr><th>Sipariş</th><th>Müşteri</th><th>Ürünler</th><th>Tutar</th><th>Durum</th><th>İşlem</th></tr></thead><tbody id="orderRows"></tbody></table></div></div>
  </div>
 
  <div id="couponTab" class="tab-content">
@@ -197,7 +192,7 @@ th{color:var(--gold)}
    <h3>Kupon Oluştur</h3>
    <div class="admin-grid">
     <div class="field"><label>Kupon kodu</label><input id="couponCode" placeholder="XAX10"></div>
-    <div class="field"><label>İndirim (%)</label><input id="couponDiscount" type="number" min="1" max="90" placeholder="10"></div>
+    <div class="field"><label>İndirim (%)</label><input id="couponDiscount" type="number" min="1" max="90"></div>
    </div>
    <button class="btn gold" onclick="addCoupon()">Kupon Oluştur</button>
   </div>
@@ -208,8 +203,8 @@ th{color:var(--gold)}
   <div class="box">
    <h3>Ana Sayfa Duyurusu</h3>
    <input id="announcementText" placeholder="Kampanya duyurusu...">
-   <button class="btn gold" onclick="saveAnnouncement()">Duyuruyu Yayınla</button>
-   <button class="btn danger" onclick="removeAnnouncement()">Duyuruyu Kaldır</button>
+   <button class="btn gold" onclick="saveAnnouncement()">Yayınla</button>
+   <button class="btn danger" onclick="removeAnnouncement()">Kaldır</button>
   </div>
  </div>
 
@@ -218,7 +213,7 @@ th{color:var(--gold)}
    <h3>Mağaza Ayarları</h3>
    <div class="field"><label>Mağaza adı</label><input id="shopName"></div>
    <div class="field"><label>Açıklama</label><input id="shopDescription"></div>
-   <div class="field"><label>İletişim bilgisi</label><input id="shopContact" placeholder="Instagram veya e-posta"></div>
+   <div class="field"><label>İletişim bilgisi</label><input id="shopContact"></div>
    <button class="btn gold" onclick="saveSettings()">Ayarları Kaydet</button>
   </div>
  </div>
@@ -226,7 +221,6 @@ th{color:var(--gold)}
  <div id="backupTab" class="tab-content">
   <div class="box">
    <h3>Veri Yedekleme</h3>
-   <p class="muted">Mağaza verilerini JSON dosyası olarak indirebilir veya daha önce indirdiğin yedeği geri yükleyebilirsin.</p>
    <button class="btn gold" onclick="exportData()">Yedek İndir</button>
    <div class="field"><label>Yedek dosyası</label><input type="file" id="importFile" accept=".json"></div>
    <button class="btn" onclick="importData()">Yedeği Geri Yükle</button>
@@ -242,34 +236,67 @@ th{color:var(--gold)}
  <p style="margin-top:12px">© 2026 XAX Epin Store. Tüm hakları saklıdır.</p>
 </footer>
 
+<!-- Yönetici girişi -->
 <div class="overlay" id="adminLogin">
  <div class="modal">
   <h2>🔐 Yönetici Girişi</h2>
+  <p class="muted" id="adminLoginInfo">Yönetici şifreni gir.</p>
   <div class="field"><label>Yönetici şifresi</label><input id="adminPassword" type="password" placeholder="Şifre" onkeydown="if(event.key==='Enter')login()"></div>
   <button class="btn gold" onclick="login()">Giriş Yap</button>
   <button class="btn gray" onclick="closeLogin()">Kapat</button>
-  <p class="muted" style="margin-top:12px">İlk giriş şifresi: XAX2026! (Giriş yaptıktan sonra değiştirebilirsin.)</p>
+  <div class="warning">İlk kullanımda kendine bir yönetici şifresi oluşturacaksın. Bu tarayıcı tabanlı sistem gerçek sunucu güvenliği sağlamaz.</div>
  </div>
 </div>
 
-<div class="overlay" id="checkoutModal">
+<!-- Hesap -->
+<div class="overlay" id="accountModal">
  <div class="modal">
-  <h2>🛒 Sipariş Oluştur</h2>
-  <p id="checkoutProduct" class="muted"></p>
-  <div class="field"><label>Adın</label><input id="buyerName" placeholder="Ad soyad"></div>
-  <div class="field"><label>İletişim bilgisi</label><input id="buyerContact" placeholder="E-posta veya Instagram"></div>
-  <div class="field"><label>Kupon kodu (isteğe bağlı)</label><input id="buyerCoupon" placeholder="XAX10"></div>
-  <p id="checkoutTotal" class="price"></p>
-  <button class="btn gold" onclick="placeOrder()">Siparişi Kaydet</button>
-  <button class="btn gray" onclick="closeCheckout()">Vazgeç</button>
-  <p class="muted" style="margin-top:12px">Bu demo sipariş formu gerçek ödeme almaz ve satıcıya otomatik bildirim göndermez.</p>
+  <h2>👤 XAX Hesabım</h2>
+  <div id="accountContent"></div>
+  <button class="btn gray" onclick="closeModal('accountModal')">Kapat</button>
+ </div>
+</div>
+
+<!-- Sepet -->
+<div class="overlay" id="cartModal">
+ <div class="modal">
+  <h2>🛒 Alışveriş Sepetim</h2>
+  <div id="cartContent"></div>
+  <div class="line"></div>
+  <div class="field"><label>Kupon kodu</label><input id="cartCoupon" placeholder="Kupon varsa gir"></div>
+  <p class="price" id="cartTotal">0 TL</p>
+  <button class="btn gold" onclick="checkoutCart()">Bakiye ile Satın Al</button>
+  <button class="btn gray" onclick="closeModal('cartModal')">Alışverişe Devam Et</button>
+  <p class="muted" style="margin-top:12px">Satın alma için hesabına giriş yapmalısın.</p>
+ </div>
+</div>
+
+<!-- Bakiye yükleme -->
+<div class="overlay" id="topupModal">
+ <div class="modal">
+  <h2>💰 Bakiye Yükle</h2>
+  <p class="muted">Demo bakiye yükleme ekranı. Gerçek para tahsilatı yapılmaz.</p>
+  <div class="field"><label>Yüklenecek miktar</label>
+   <select id="topupAmount">
+    <option value="50">50 TL</option>
+    <option value="100">100 TL</option>
+    <option value="250">250 TL</option>
+    <option value="500">500 TL</option>
+    <option value="1000">1.000 TL</option>
+   </select>
+  </div>
+  <div class="warning">Bu buton yalnızca test bakiyesi ekler. Gerçek ödeme değildir.</div>
+  <button class="btn gold" onclick="demoTopup()">Demo Bakiyesi Ekle</button>
+  <button class="btn gray" onclick="closeModal('topupModal')">Vazgeç</button>
  </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-const KEY="xax_store_v1";
+const KEY="xax_store_v2";
+const AUTHKEY="xax_admin_auth_v1";
+
 const DEFAULT={
  products:[
   {id:"p1",name:"Steam 5 Dolar",price:200,sale:0,stock:10,icon:"🎮",category:"Steam",description:"Steam cüzdan kodu"},
@@ -280,77 +307,383 @@ const DEFAULT={
  orders:[],
  coupons:[],
  announcement:"",
- settings:{name:"XAX EPIN STORE",description:"Dijital alışverişin yeni adresi.",contact:""}
+ settings:{name:"XAX EPIN STORE",description:"Dijital alışverişin yeni adresi.",contact:""},
+ users:[],
+ cart:[],
+ transactions:[]
 };
-let data=loadData(),logged=false,selectedProduct=null,activeCategory="Tümü";
+
+let data=loadData();
+let logged=false;
+let selectedProduct=null;
+let activeCategory="Tümü";
+let currentUserId=localStorage.getItem("xax_current_user")||"";
+
 function loadData(){
- try{const x=JSON.parse(localStorage.getItem(KEY));return x&&Array.isArray(x.products)?x:structuredClone(DEFAULT)}
- catch(e){return structuredClone(DEFAULT)}
+ try{
+  const x=JSON.parse(localStorage.getItem(KEY));
+  if(x&&Array.isArray(x.products)){
+   return {...structuredClone(DEFAULT),...x};
+  }
+  return structuredClone(DEFAULT);
+ }catch(e){return structuredClone(DEFAULT)}
 }
-function persist(){localStorage.setItem(KEY,JSON.stringify(data));}
-function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2500)}
-function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function toast(t){
+ const e=document.getElementById("toast");
+ e.textContent=t;e.style.display="block";
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>e.style.display="none",2800);
+}
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
 function money(v){return Number(v||0).toLocaleString("tr-TR")+" TL"}
-function openLogin(){document.getElementById("adminLogin").style.display="flex"}
-function closeLogin(){document.getElementById("adminLogin").style.display="none"}
-function login(){
- if(document.getElementById("adminPassword").value==="XAX2026!"){
-  logged=true;closeLogin();document.getElementById("adminPanel").style.display="block";document.getElementById("adminPassword").value="";refreshAdmin();toast("Yönetim paneline hoş geldin!")
- }else toast("Şifre hatalı!")
+function closeModal(id){document.getElementById(id).style.display="none"}
+function getUser(){return data.users.find(u=>u.id===currentUserId)||null}
+function currentBalance(){const u=getUser();return u?Number(u.balance||0):0}
+function productPrice(p){return Number(p.sale)>0?Number(p.sale):Number(p.price)}
+
+function openLogin(){
+ document.getElementById("adminLoginInfo").textContent=localStorage.getItem(AUTHKEY)?"Yönetici şifreni gir.":"İlk kullanım: yeni yönetici şifreni oluştur.";
+ document.getElementById("adminPassword").value="";
+ document.getElementById("adminLogin").style.display="flex";
 }
-function logout(){logged=false;document.getElementById("adminPanel").style.display="none";toast("Çıkış yapıldı")}
+function closeLogin(){closeModal("adminLogin")}
+
+async function hashPassword(password,salt){
+ const bytes=new TextEncoder().encode(salt+password);
+ const hash=await crypto.subtle.digest("SHA-256",bytes);
+ return Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+async function login(){
+ const pass=document.getElementById("adminPassword").value;
+ if(pass.length<12)return toast("Şifre en az 12 karakter olmalı.");
+ let saved=null;
+ try{saved=JSON.parse(localStorage.getItem(AUTHKEY)||"null")}catch(e){}
+ if(!saved){
+  const salt=crypto.getRandomValues(new Uint8Array(16));
+  const saltText=Array.from(salt).map(x=>x.toString(16).padStart(2,"0")).join("");
+  const hash=await hashPassword(pass,saltText);
+  localStorage.setItem(AUTHKEY,JSON.stringify({salt:saltText,hash}));
+  toast("Yönetici şifren oluşturuldu.");
+ }else{
+  const hash=await hashPassword(pass,saved.salt);
+  if(hash!==saved.hash)return toast("Şifre hatalı!");
+ }
+ logged=true;closeLogin();
+ document.getElementById("adminPanel").style.display="block";
+ document.getElementById("adminPassword").value="";
+ refreshAdmin();
+ document.getElementById("adminPanel").scrollIntoView({behavior:"smooth"});
+ toast("Yönetim paneli açıldı.");
+}
+function logout(){
+ logged=false;
+ document.getElementById("adminPanel").style.display="none";
+ toast("Çıkış yapıldı.");
+}
 function tab(id,button){
  document.querySelectorAll(".tab-content").forEach(x=>x.classList.remove("active"));
  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");button.classList.add("active")
+ document.getElementById(id).classList.add("active");
+ button.classList.add("active");
 }
+
 function renderStore(){
  const cats=["Tümü",...data.categories];
- document.getElementById("categories").innerHTML=cats.map(c=>`<button class="cat ${activeCategory===c?"active":""}" onclick="filterCategory('${esc(c)}')">${esc(c)}</button>`).join("");
+ document.getElementById("categories").innerHTML=cats.map(c=>
+  `<button class="cat ${activeCategory===c?"active":""}" onclick="filterCategory('${esc(c)}')">${esc(c)}</button>`
+ ).join("");
+
  const list=data.products.filter(p=>activeCategory==="Tümü"||p.category===activeCategory);
  document.getElementById("products").innerHTML=list.length?list.map(p=>{
-  const price=Number(p.sale)>0?Number(p.sale):Number(p.price);
+  const price=productPrice(p);
   return `<article class="card">
    ${Number(p.sale)>0?'<span class="discount">İNDİRİM</span>':""}
-   <div class="icon">${esc(p.icon||"🎮")}</div><h3>${esc(p.name)}</h3>
+   <div class="icon">${esc(p.icon||"🎮")}</div>
+   <h3>${esc(p.name)}</h3>
    <p class="muted">${esc(p.category)}</p>
    <div class="price">${money(price)} ${Number(p.sale)>0?`<span class="old">${money(p.price)}</span>`:""}</div>
    <p class="stock">${Number(p.stock)>0?"Stok: "+Number(p.stock):"Stokta yok"}</p>
    <p class="muted">${esc(p.description)}</p>
-   <button class="btn" ${Number(p.stock)<=0?"disabled":""} onclick="openCheckout('${p.id}')">${Number(p.stock)>0?"Sipariş Ver":"Tükendi"}</button>
-  </article>`
+   <button class="btn" ${Number(p.stock)<=0?"disabled":""} onclick="addToCart('${p.id}')">${Number(p.stock)>0?"Sepete Ekle":"Tükendi"}</button>
+  </article>`;
  }).join(""):'<div class="empty">Bu kategoride ürün bulunamadı.</div>';
+
  document.getElementById("notice").textContent=data.announcement;
  document.getElementById("notice").style.display=data.announcement?"block":"none";
  document.getElementById("footerDescription").textContent=data.settings.description||"";
  document.getElementById("footerContact").textContent=data.settings.contact?"İletişim: "+data.settings.contact:"";
+ updateHeader();
 }
 function filterCategory(c){activeCategory=c;renderStore()}
+
+function updateHeader(){
+ document.getElementById("cartCount").textContent=data.cart.reduce((s,x)=>s+Number(x.qty),0);
+ const u=getUser();
+ document.getElementById("accountButton").textContent=u?"Hesabım":"Giriş / Kayıt";
+}
+
+function addToCart(id){
+ const p=data.products.find(x=>x.id===id);
+ if(!p||p.stock<=0)return toast("Ürün stokta yok.");
+ const item=data.cart.find(x=>x.productId===id);
+ if(item){
+  if(item.qty>=p.stock)return toast("Stok miktarına ulaştın.");
+  item.qty++;
+ }else data.cart.push({productId:id,qty:1});
+ persist();updateHeader();toast("Ürün sepete eklendi.");
+}
+function changeQty(id,amount){
+ const item=data.cart.find(x=>x.productId===id);
+ const p=data.products.find(x=>x.id===id);
+ if(!item)return;
+ item.qty+=amount;
+ if(item.qty<=0)data.cart=data.cart.filter(x=>x.productId!==id);
+ else if(p&&item.qty>p.stock){item.qty=p.stock;toast("Stok sınırına ulaştın.")}
+ persist();renderCart();updateHeader();
+}
+function removeCartItem(id){
+ data.cart=data.cart.filter(x=>x.productId!==id);
+ persist();renderCart();updateHeader();
+}
+function cartSubtotal(){
+ return data.cart.reduce((sum,item)=>{
+  const p=data.products.find(x=>x.id===item.productId);
+  return sum+(p?productPrice(p)*item.qty:0);
+ },0);
+}
+function calculateCartTotal(){
+ let total=cartSubtotal();
+ const code=document.getElementById("cartCoupon").value.trim().toUpperCase();
+ if(code){
+  const c=data.coupons.find(x=>x.code===code);
+  if(c)total=Math.round(total*(1-c.discount/100));
+ }
+ return total;
+}
+function renderCart(){
+ const el=document.getElementById("cartContent");
+ if(!data.cart.length){
+  el.innerHTML='<div class="empty">Sepetin şu anda boş.</div>';
+  document.getElementById("cartTotal").textContent="0 TL";
+  return;
+ }
+ el.innerHTML=data.cart.map(item=>{
+  const p=data.products.find(x=>x.id===item.productId);
+  if(!p)return "";
+  return `<div class="cart-item">
+   <div class="cart-item-info"><b>${esc(p.icon)} ${esc(p.name)}</b><p class="muted">${money(productPrice(p))} / adet</p></div>
+   <div class="quantity">
+    <button onclick="changeQty('${p.id}',-1)">−</button>
+    <b>${item.qty}</b>
+    <button onclick="changeQty('${p.id}',1)">+</button>
+   </div>
+   <div><b style="color:var(--gold)">${money(productPrice(p)*item.qty)}</b>
+   <button class="btn danger small" onclick="removeCartItem('${p.id}')">Sil</button></div>
+  </div>`;
+ }).join("");
+ document.getElementById("cartTotal").textContent=money(calculateCartTotal());
+}
+function openCart(){
+ document.getElementById("cartCoupon").value="";
+ renderCart();
+ document.getElementById("cartModal").style.display="flex";
+}
+document.getElementById("cartCoupon").addEventListener("input",()=>{
+ document.getElementById("cartTotal").textContent=money(calculateCartTotal());
+});
+
+function openAccount(){
+ renderAccount();
+ document.getElementById("accountModal").style.display="flex";
+}
+function renderAccount(){
+ const el=document.getElementById("accountContent");
+ const u=getUser();
+ if(!u){
+  el.innerHTML=`
+   <p class="muted">Alışveriş yapmak ve siparişlerini takip etmek için hesap oluştur.</p>
+   <div class="field"><label>Ad</label><input id="regFirst" placeholder="Adın"></div>
+   <div class="field"><label>Soyad</label><input id="regLast" placeholder="Soyadın"></div>
+   <div class="field"><label>E-posta</label><input id="regEmail" type="email" placeholder="ornek@mail.com"></div>
+   <div class="field"><label>Telefon</label><input id="regPhone" type="tel" placeholder="05xx xxx xx xx"></div>
+   <div class="field"><label>Şifre</label><input id="regPass" type="password" placeholder="En az 8 karakter"></div>
+   <button class="btn gold" onclick="registerUser()">Hesap Oluştur</button>
+   <div class="line"></div>
+   <h3>Mevcut hesabın mı var?</h3>
+   <div class="field"><label>E-posta</label><input id="loginEmail" type="email"></div>
+   <div class="field"><label>Şifre</label><input id="loginPass" type="password"></div>
+   <button class="btn" onclick="userLogin()">Giriş Yap</button>`;
+  return;
+ }
+ el.innerHTML=`
+  <div class="profile-card">
+   <h3>${esc(u.first)} ${esc(u.last)}</h3>
+   <p class="muted">${esc(u.email)}</p>
+   <p class="muted">${esc(u.phone)}</p>
+   <div class="line"></div>
+   <p class="muted">Mevcut demo bakiyen</p>
+   <div class="price">${money(u.balance)}</div>
+   <button class="btn gold" onclick="openTopup()">💰 Bakiye Yükle</button>
+  </div>
+  <h3 style="color:var(--gold);margin:18px 0 10px">📦 Sipariş Geçmişim</h3>
+  <div>${renderUserOrders(u)}</div>
+  <h3 style="color:var(--gold);margin:18px 0 10px">💳 Bakiye Hareketleri</h3>
+  <div>${renderTransactions(u.id)}</div>
+  <button class="btn danger" onclick="userLogout()">Hesaptan Çıkış Yap</button>`;
+}
+function renderUserOrders(u){
+ const orders=data.orders.filter(o=>o.userId===u.id).slice().reverse();
+ if(!orders.length)return '<p class="muted">Henüz siparişin yok.</p>';
+ return orders.map(o=>`<div class="profile-card">
+  <b>${esc(o.id)}</b><span class="badge">${esc(o.status)}</span>
+  <p class="muted">${esc(o.itemsText)}</p>
+  <p style="color:var(--gold);margin-top:7px">${money(o.total)}</p>
+ </div>`).join("");
+}
+function renderTransactions(userId){
+ const tx=data.transactions.filter(t=>t.userId===userId).slice().reverse();
+ if(!tx.length)return '<p class="muted">Henüz bakiye hareketi yok.</p>';
+ return tx.map(t=>`<div class="profile-card">
+  <b>${esc(t.title)}</b>
+  <p class="muted">${new Date(t.date).toLocaleString("tr-TR")}</p>
+  <p style="color:${t.amount>=0?"#6cdb85":"#ef7777"}">${t.amount>=0?"+":""}${money(t.amount)}</p>
+ </div>`).join("");
+}
+async function registerUser(){
+ const first=document.getElementById("regFirst").value.trim();
+ const last=document.getElementById("regLast").value.trim();
+ const email=document.getElementById("regEmail").value.trim().toLowerCase();
+ const phone=document.getElementById("regPhone").value.trim();
+ const pass=document.getElementById("regPass").value;
+ if(!first||!last||!email||!phone||pass.length<8)return toast("Tüm alanları doldur. Şifre en az 8 karakter olmalı.");
+ if(data.users.some(u=>u.email===email))return toast("Bu e-posta zaten kayıtlı.");
+ const salt=crypto.getRandomValues(new Uint8Array(16));
+ const saltText=Array.from(salt).map(x=>x.toString(16).padStart(2,"0")).join("");
+ const hash=await hashPassword(pass,saltText);
+ const user={id:"u"+Date.now(),first,last,email,phone,balance:0,salt:saltText,hash,created:new Date().toISOString()};
+ data.users.push(user);
+ currentUserId=user.id;localStorage.setItem("xax_current_user",currentUserId);
+ persist();renderAccount();updateHeader();toast("Hesabın oluşturuldu!");
+}
+async function userLogin(){
+ const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+ const pass=document.getElementById("loginPass").value;
+ const u=data.users.find(x=>x.email===email);
+ if(!u)return toast("Hesap bulunamadı.");
+ const hash=await hashPassword(pass,u.salt);
+ if(hash!==u.hash)return toast("Şifre hatalı.");
+ currentUserId=u.id;localStorage.setItem("xax_current_user",currentUserId);
+ renderAccount();updateHeader();toast("Giriş başarılı.");
+}
+function userLogout(){
+ currentUserId="";localStorage.removeItem("xax_current_user");
+ renderAccount();updateHeader();toast("Hesaptan çıkış yapıldı.");
+}
+
+function openTopup(){
+ if(!getUser())return toast("Önce hesabına giriş yap.");
+ closeModal("accountModal");
+ document.getElementById("topupModal").style.display="flex";
+}
+function demoTopup(){
+ const u=getUser();
+ if(!u)return toast("Hesabına giriş yapmalısın.");
+ const amount=Number(document.getElementById("topupAmount").value);
+ if(![50,100,250,500,1000].includes(amount))return toast("Miktar geçersiz.");
+ u.balance=Number(u.balance||0)+amount;
+ data.transactions.push({id:"t"+Date.now(),userId:u.id,title:"Demo bakiye yükleme",amount,date:new Date().toISOString()});
+ persist();closeModal("topupModal");renderAccount();toast(money(amount)+" demo bakiyesi eklendi.");
+}
+
+function checkoutCart(){
+ const u=getUser();
+ if(!u){closeModal("cartModal");openAccount();return toast("Satın almak için giriş yap.");}
+ if(!data.cart.length)return toast("Sepetin boş.");
+ let total=cartSubtotal();
+ const code=document.getElementById("cartCoupon").value.trim().toUpperCase();
+ if(code){
+  const c=data.coupons.find(x=>x.code===code);
+  if(!c)return toast("Kupon geçersiz.");
+  total=Math.round(total*(1-c.discount/100));
+ }
+ for(const item of data.cart){
+  const p=data.products.find(x=>x.id===item.productId);
+  if(!p||p.stock<item.qty)return toast("Ürünlerden birinin stoğu yetersiz.");
+ }
+ if(Number(u.balance)<total){
+  toast("Bakiye yetersiz! Gerekli: "+money(total));
+  return;
+ }
+ if(!confirm("Toplam "+money(total)+" tutarında demo satın alma yapılsın mı?"))return;
+ const itemsText=data.cart.map(item=>{
+  const p=data.products.find(x=>x.id===item.productId);
+  return p.name+" x"+item.qty;
+ }).join(", ");
+ data.cart.forEach(item=>{
+  const p=data.products.find(x=>x.id===item.productId);
+  p.stock-=item.qty;
+ });
+ u.balance-=total;
+ data.transactions.push({id:"t"+Date.now(),userId:u.id,title:"Alışveriş: "+itemsText,amount:-total,date:new Date().toISOString()});
+ data.orders.push({
+  id:"XAX-"+Date.now().toString().slice(-7),
+  userId:u.id,
+  name:u.first+" "+u.last,
+  contact:u.email+" / "+u.phone,
+  itemsText,
+  total,
+  status:"Bekliyor",
+  date:new Date().toISOString()
+ });
+ data.cart=[];
+ persist();closeModal("cartModal");renderStore();updateHeader();
+ toast("Demo siparişin oluşturuldu!");
+}
+
 function refreshAdmin(){
  document.getElementById("sProducts").textContent=data.products.length;
  document.getElementById("sCategories").textContent=data.categories.length;
  document.getElementById("sOrders").textContent=data.orders.length;
  document.getElementById("sPending").textContent=data.orders.filter(o=>o.status==="Bekliyor").length;
  document.getElementById("sRevenue").textContent=money(data.orders.filter(o=>o.status!=="İptal").reduce((s,o)=>s+Number(o.total),0));
+ document.getElementById("sTopups").textContent=money(data.transactions.filter(t=>t.title==="Demo bakiye yükleme").reduce((s,t)=>s+t.amount,0));
  document.getElementById("recentOrders").innerHTML=data.orders.slice(-5).reverse().map(o=>`<p class="muted">${esc(o.id)} · ${esc(o.name)} · ${money(o.total)} · ${esc(o.status)}</p>`).join("")||'<p class="empty">Henüz sipariş yok.</p>';
+
  document.getElementById("pCategory").innerHTML=data.categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
- document.getElementById("productRows").innerHTML=data.products.map(p=>`<tr><td>${esc(p.icon)} ${esc(p.name)}</td><td>${money(p.sale||p.price)}</td><td>${p.stock}</td><td>${esc(p.category)}</td><td><div class="row-actions"><button class="btn small gold" onclick="editProduct('${p.id}')">Düzenle</button><button class="btn small danger" onclick="deleteProduct('${p.id}')">Sil</button></div></td></tr>`).join("")||'<tr><td colspan="5">Ürün yok.</td></tr>';
- document.getElementById("categoryRows").innerHTML=data.categories.map(c=>`<div class="admin-row box">${esc(c)} <button class="btn small danger" onclick="deleteCategory('${esc(c)}')">Sil</button></div>`).join("")||"Kategori yok.";
- document.getElementById("orderRows").innerHTML=data.orders.map(o=>`<tr><td>${esc(o.id)}</td><td>${esc(o.name)}<br>${esc(o.contact)}</td><td>${esc(o.product)}</td><td>${money(o.total)}</td><td>${esc(o.status)}</td><td><select onchange="changeOrder('${o.id}',this.value)">${["Bekliyor","Onaylandı","Tamamlandı","İptal"].map(s=>`<option ${o.status===s?"selected":""}>${s}</option>`).join("")}</select></td></tr>`).join("")||'<tr><td colspan="6">Sipariş yok.</td></tr>';
- document.getElementById("couponRows").innerHTML=data.coupons.map(c=>`<div class="admin-row box">${esc(c.code)} — %${c.discount} <button class="btn small danger" onclick="deleteCoupon('${c.code}')">Sil</button></div>`).join("")||"Kupon yok.";
+ document.getElementById("productRows").innerHTML=data.products.map(p=>`<tr>
+  <td>${esc(p.icon)} ${esc(p.name)}</td><td>${money(productPrice(p))}</td><td>${p.stock}</td><td>${esc(p.category)}</td>
+  <td><div class="row-actions"><button class="btn small gold" onclick="editProduct('${p.id}')">Düzenle</button><button class="btn small danger" onclick="deleteProduct('${p.id}')">Sil</button></div></td>
+ </tr>`).join("")||'<tr><td colspan="5">Ürün yok.</td></tr>';
+
+ document.getElementById("categoryRows").innerHTML=data.categories.map(c=>`<div class="box">${esc(c)} <button class="btn small danger" onclick="deleteCategory('${esc(c)}')">Sil</button></div>`).join("")||"Kategori yok.";
+
+ document.getElementById("orderRows").innerHTML=data.orders.slice().reverse().map(o=>`<tr>
+  <td>${esc(o.id)}</td><td>${esc(o.name)}<br>${esc(o.contact)}</td><td>${esc(o.itemsText||o.product||"")}</td><td>${money(o.total)}</td><td>${esc(o.status)}</td>
+  <td><select onchange="changeOrder('${o.id}',this.value)">${["Bekliyor","Onaylandı","Tamamlandı","İptal"].map(s=>`<option ${o.status===s?"selected":""}>${s}</option>`).join("")}</select></td>
+ </tr>`).join("")||'<tr><td colspan="6">Sipariş yok.</td></tr>';
+
+ document.getElementById("couponRows").innerHTML=data.coupons.map(c=>`<div class="box">${esc(c.code)} — %${c.discount} <button class="btn small danger" onclick="deleteCoupon('${c.code}')">Sil</button></div>`).join("")||"Kupon yok.";
  document.getElementById("shopName").value=data.settings.name||"";
  document.getElementById("shopDescription").value=data.settings.description||"";
  document.getElementById("shopContact").value=data.settings.contact||"";
 }
+
 function saveProduct(){
- const name=document.getElementById("pName").value.trim(),price=Number(document.getElementById("pPrice").value),sale=Number(document.getElementById("pSale").value),stock=Number(document.getElementById("pStock").value);
- const id=document.getElementById("editId").value,category=document.getElementById("pCategory").value;
- if(!name||!Number.isFinite(price)||price<0||!Number.isFinite(stock)||stock<0)return toast("Ürün bilgilerini kontrol et.");
+ const name=document.getElementById("pName").value.trim();
+ const price=Number(document.getElementById("pPrice").value);
+ const sale=Number(document.getElementById("pSale").value);
+ const stock=Number(document.getElementById("pStock").value);
+ const id=document.getElementById("editId").value;
+ const category=document.getElementById("pCategory").value;
+ if(!name||!Number.isFinite(price)||price<=0||!Number.isFinite(stock)||stock<0)return toast("Ürün bilgilerini kontrol et.");
  if(sale<0||(sale>0&&sale>=price))return toast("İndirimli fiyat normal fiyattan düşük olmalı.");
  if(!category)return toast("Önce kategori oluştur.");
  const p={id:id||"p"+Date.now(),name,price,sale,stock,icon:document.getElementById("pIcon").value||"🎮",category,description:document.getElementById("pDescription").value};
  if(id)data.products=data.products.map(x=>x.id===id?p:x);else data.products.push(p);
- persist();clearProduct();refreshAdmin();renderStore();toast("Ürün kaydedildi.")
+ persist();clearProduct();refreshAdmin();renderStore();toast("Ürün kaydedildi.");
 }
 function editProduct(id){
  const p=data.products.find(x=>x.id===id);if(!p)return;
@@ -363,75 +696,97 @@ function editProduct(id){
  document.getElementById("pCategory").value=p.category;
  document.getElementById("pDescription").value=p.description||"";
  document.getElementById("productFormTitle").textContent="Ürünü Düzenle";
- document.getElementById("productTab").scrollIntoView({behavior:"smooth"})
+ document.getElementById("productTab").scrollIntoView({behavior:"smooth"});
 }
 function clearProduct(){
  ["editId","pName","pPrice","pSale","pDescription"].forEach(id=>document.getElementById(id).value="");
- document.getElementById("pStock").value=10;document.getElementById("pIcon").value="🎮";document.getElementById("productFormTitle").textContent="Yeni Ürün Ekle"
+ document.getElementById("pStock").value=10;
+ document.getElementById("pIcon").value="🎮";
+ document.getElementById("productFormTitle").textContent="Yeni Ürün Ekle";
 }
-function deleteProduct(id){if(!confirm("Ürün silinsin mi?"))return;data.products=data.products.filter(p=>p.id!==id);persist();refreshAdmin();renderStore();toast("Ürün silindi")}
+function deleteProduct(id){
+ if(!confirm("Ürün silinsin mi?"))return;
+ data.products=data.products.filter(p=>p.id!==id);
+ data.cart=data.cart.filter(x=>x.productId!==id);
+ persist();refreshAdmin();renderStore();toast("Ürün silindi.");
+}
 function addCategory(){
- const c=document.getElementById("newCategory").value.trim();if(!c)return toast("Kategori adı gir.");
+ const c=document.getElementById("newCategory").value.trim();
+ if(!c)return toast("Kategori adı gir.");
  if(data.categories.some(x=>x.toLowerCase()===c.toLowerCase()))return toast("Bu kategori zaten var.");
- data.categories.push(c);document.getElementById("newCategory").value="";persist();refreshAdmin();renderStore();toast("Kategori eklendi.")
+ data.categories.push(c);document.getElementById("newCategory").value="";
+ persist();refreshAdmin();renderStore();toast("Kategori eklendi.");
 }
 function deleteCategory(c){
- if(data.products.some(p=>p.category===c))return toast("Önce bu kategorideki ürünleri başka kategoriye taşı.");
+ if(data.products.some(p=>p.category===c))return toast("Önce ürünleri başka kategoriye taşı.");
  if(!confirm("Kategori silinsin mi?"))return;
- data.categories=data.categories.filter(x=>x!==c);persist();refreshAdmin();renderStore()
+ data.categories=data.categories.filter(x=>x!==c);
+ persist();refreshAdmin();renderStore();
 }
-function openCheckout(id){
- selectedProduct=data.products.find(p=>p.id===id);if(!selectedProduct)return;
- document.getElementById("checkoutProduct").textContent=selectedProduct.name;
- document.getElementById("buyerName").value="";
- document.getElementById("buyerContact").value="";
- document.getElementById("buyerCoupon").value="";
- document.getElementById("checkoutTotal").textContent=money(selectedProduct.sale||selectedProduct.price);
- document.getElementById("checkoutModal").style.display="flex"
+function changeOrder(id,status){
+ const o=data.orders.find(x=>x.id===id);
+ if(o){o.status=status;persist();refreshAdmin();toast("Sipariş güncellendi.");}
 }
-function closeCheckout(){document.getElementById("checkoutModal").style.display="none"}
-function placeOrder(){
- if(!selectedProduct||selectedProduct.stock<=0)return toast("Ürün stokta yok.");
- const name=document.getElementById("buyerName").value.trim(),contact=document.getElementById("buyerContact").value.trim();
- if(!name||!contact)return toast("Ad ve iletişim bilgisi gerekli.");
- let total=Number(selectedProduct.sale||selectedProduct.price),code=document.getElementById("buyerCoupon").value.trim().toUpperCase();
- if(code){
-  const coupon=data.coupons.find(c=>c.code===code);
-  if(!coupon)return toast("Kupon geçersiz.");
-  total=Math.round(total*(1-coupon.discount/100))
- }
- data.orders.push({id:"XAX-"+Date.now().toString().slice(-7),name,contact,product:selectedProduct.name,total,status:"Bekliyor",date:new Date().toISOString()});
- selectedProduct.stock--;persist();closeCheckout();renderStore();if(logged)refreshAdmin();toast("Sipariş bu tarayıcıya kaydedildi.")
-}
-function changeOrder(id,status){const o=data.orders.find(x=>x.id===id);if(o){o.status=status;persist();refreshAdmin();toast("Sipariş güncellendi")}}
 function addCoupon(){
- const code=document.getElementById("couponCode").value.trim().toUpperCase(),discount=Number(document.getElementById("couponDiscount").value);
+ const code=document.getElementById("couponCode").value.trim().toUpperCase();
+ const discount=Number(document.getElementById("couponDiscount").value);
  if(!code||discount<1||discount>90)return toast("Kupon bilgilerini kontrol et.");
  if(data.coupons.some(c=>c.code===code))return toast("Bu kupon zaten var.");
- data.coupons.push({code,discount});persist();refreshAdmin();document.getElementById("couponCode").value="";document.getElementById("couponDiscount").value="";toast("Kupon eklendi.")
+ data.coupons.push({code,discount});
+ persist();refreshAdmin();
+ document.getElementById("couponCode").value="";
+ document.getElementById("couponDiscount").value="";
+ toast("Kupon eklendi.");
 }
-function deleteCoupon(code){data.coupons=data.coupons.filter(c=>c.code!==code);persist();refreshAdmin()}
-function saveAnnouncement(){data.announcement=document.getElementById("announcementText").value.trim();persist();renderStore();toast("Duyuru yayınlandı")}
-function removeAnnouncement(){data.announcement="";document.getElementById("announcementText").value="";persist();renderStore();toast("Duyuru kaldırıldı")}
+function deleteCoupon(code){
+ data.coupons=data.coupons.filter(c=>c.code!==code);
+ persist();refreshAdmin();
+}
+function saveAnnouncement(){
+ data.announcement=document.getElementById("announcementText").value.trim();
+ persist();renderStore();toast("Duyuru yayınlandı.");
+}
+function removeAnnouncement(){
+ data.announcement="";document.getElementById("announcementText").value="";
+ persist();renderStore();toast("Duyuru kaldırıldı.");
+}
 function saveSettings(){
- data.settings={name:document.getElementById("shopName").value,description:document.getElementById("shopDescription").value,contact:document.getElementById("shopContact").value};
- persist();renderStore();toast("Ayarlar kaydedildi.")
+ data.settings={
+  name:document.getElementById("shopName").value,
+  description:document.getElementById("shopDescription").value,
+  contact:document.getElementById("shopContact").value
+ };
+ persist();renderStore();toast("Ayarlar kaydedildi.");
 }
 function exportData(){
- const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
- a.href=url;a.download="xax-store-yedek.json";a.click();URL.revokeObjectURL(url);toast("Yedek indirildi.")
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download="xax-store-yedek.json";a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ toast("Yedek indirildi.");
 }
 function importData(){
- const file=document.getElementById("importFile").files[0];if(!file)return toast("Dosya seç.");
- const reader=new FileReader();reader.onload=()=>{
+ const file=document.getElementById("importFile").files[0];
+ if(!file)return toast("Dosya seç.");
+ const reader=new FileReader();
+ reader.onload=()=>{
   try{
    const x=JSON.parse(reader.result);
    if(!Array.isArray(x.products)||!Array.isArray(x.categories)||!Array.isArray(x.orders)||!Array.isArray(x.coupons))throw Error();
-   data=x;persist();refreshAdmin();renderStore();toast("Yedek geri yüklendi.")
-  }catch(e){toast("Yedek dosyası geçersiz.")}
- };reader.readAsText(file)
+   data={...structuredClone(DEFAULT),...x};
+   persist();refreshAdmin();renderStore();toast("Yedek geri yüklendi.");
+  }catch(e){toast("Yedek dosyası geçersiz.");}
+ };
+ reader.readAsText(file);
 }
-function resetAll(){if(!confirm("Bütün ürünler, siparişler ve ayarlar silinecek. Emin misin?"))return;data=structuredClone(DEFAULT);persist();refreshAdmin();renderStore();toast("Mağaza sıfırlandı")}
+function resetAll(){
+ if(!confirm("Bütün ürünler, siparişler, hesaplar ve ayarlar silinecek. Emin misin?"))return;
+ data=structuredClone(DEFAULT);persist();
+ currentUserId="";localStorage.removeItem("xax_current_user");
+ refreshAdmin();renderStore();toast("Mağaza sıfırlandı.");
+}
+
 renderStore();
 </script>
 </body>
