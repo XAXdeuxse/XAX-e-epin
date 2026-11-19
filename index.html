@@ -1,121 +1,222 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XAX</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XAX Epin Store</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #090909;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #111;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #292929;
+}
+
+.logo {
+    color: #e0b443;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #e63939;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.hero {
+    padding: 85px 20px;
+    text-align: center;
+    background: linear-gradient(135deg,#190808,#101010,#261600);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #e0b443;
+}
+
+.hero p {
+    color: #bbb;
+    margin-bottom: 25px;
+}
+
+.hero button {
+    background: #d62828;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.container {
+    padding: 45px 7%;
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #e0b443;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #171717;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: .2s;
+}
+
+.card:hover {
+    border-color: #e0b443;
+    transform: translateY(-5px);
+}
+
+.product-icon {
+    font-size: 43px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.price {
+    color: #e0b443;
+    font-size: 22px;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.card button {
+    background: #c92828;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 11px 20px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #111;
+    color: #888;
+    margin-top: 40px;
+}
+
+@media(max-width:600px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+    nav a {
+        margin: 0 7px;
+    }
+    .hero h1 {
+        font-size: 30px;
+    }
+}
+</style>
 </head>
+
 <body>
-  <div class="hero">  
-   <div class="brand">XAX</div>  
-  </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XAX</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="hero">
-    <div class="brand">XAX</div>
-  </div>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="site">Site</button>
-    <button class="tab" data-tab="admin">Yönetim</button>
-  </nav>
+<header>
+    <div class="logo">XAX <span>EPIN</span></div>
+    <nav>
+        <a href="#anasayfa">Ana Sayfa</a>
+        <a href="#urunler">Ürünler</a>
+        <a href="#iletisim">İletişim</a>
+    </nav>
+</header>
 
-  <main id="siteView">
-    <div class="categories" id="categoryList"></div>
-  </main>
+<section class="hero" id="anasayfa">
+    <h1>XAX <span>EPIN STORE</span></h1>
+    <p>Dijital oyun dünyasına hoş geldin!</p>
+    <button onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'})">
+        Ürünleri Keşfet
+    </button>
+</section>
 
-  <main id="adminView" class="hidden">
-    <form id="addForm">
-      <input type="text" id="catName" placeholder="Kategori adı" required>
-      <input type="number" id="catPrice" placeholder="Fiyat" required>
-      <button type="submit">Ekle</button>
-    </form>
-    <div class="categories" id="adminList"></div>
-  </main>
+<main class="container" id="urunler">
+    <h2>🔥 Steam Cüzdan Kodları</h2>
 
-  <script>
-    let data = JSON.parse(localStorage.getItem('shop')) || [];
+    <div class="products">
 
-    function save() {
-      localStorage.setItem('shop', JSON.stringify(data));
-    }
+        <div class="card">
+            <div class="product-icon">🎮</div>
+            <h3>Steam 5 Dolar</h3>
+            <div class="price">Fiyat Bekleniyor</div>
+            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
+        </div>
 
-    function renderSite() {
-      const list = document.getElementById('categoryList');
-      list.innerHTML = '';
-      if (data.length === 0) {
-        list.innerHTML = '<p class="empty">Henüz kategori yok.</p>';
-        return;
-      }
-      data.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `<h2>${item.name}</h2><p class="stat">${item.price} ₺</p>`;
-        list.appendChild(div);
-      });
-    }
+        <div class="card">
+            <div class="product-icon">🎮</div>
+            <h3>Steam 10 Dolar</h3>
+            <div class="price">Fiyat Bekleniyor</div>
+            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
+        </div>
 
-    function renderAdmin() {
-      const list = document.getElementById('adminList');
-      list.innerHTML = '';
-      data.forEach((item, i) => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `
-          <h2>${item.name}</h2>
-          <input type="number" value="${item.price}" onchange="updatePrice(${i}, this.value)">
-          <button onclick="deleteItem(${i})">Sil</button>`;
-        list.appendChild(div);
-      });
-    }
+        <div class="card">
+            <div class="product-icon">🎮</div>
+            <h3>Steam 25 Dolar</h3>
+            <div class="price">Fiyat Bekleniyor</div>
+            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
+        </div>
 
-    function updatePrice(i, val) {
-      data .price = Number(val);
-      save();
-      renderSite();
-    }
+        <div class="card">
+            <div class="product-icon">🎮</div>
+            <h3>Steam 50 Dolar</h3>
+            <div class="price">Fiyat Bekleniyor</div>
+            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
+        </div>
 
-    function deleteItem(i) {
-      data.splice(i, 1);
-      save();
-      renderAdmin();
-      renderSite();
-    }
+        <div class="card">
+            <div class="product-icon">🎮</div>
+            <h3>Steam 100 Dolar</h3>
+            <div class="price">Fiyat Bekleniyor</div>
+            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
+        </div>
 
-    document.getElementById('addForm').addEventListener('submit', e => {
-      e.preventDefault();
-      data.push({
-        name: document.getElementById('catName').value,
-        price: Number(document.getElementById('catPrice').value)
-      });
-      save();
-      renderAdmin();
-      renderSite();
-      e.target.reset();
-    });
+    </div>
+</main>
 
-    document.querySelectorAll('.tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const tab = btn.dataset.tab;
-        document.getElementById('siteView').classList.toggle('hidden', tab !== 'site');
-        document.getElementById('adminView').classList.toggle('hidden', tab !== 'admin');
-      });
-    });
+<footer id="iletisim">
+    <div class="logo">XAX <span>EPIN</span></div>
+    <p style="margin-top:12px">© 2026 XAX Epin Store. Tüm hakları saklıdır.</p>
+    <p style="margin-top:8px">Dijital alışverişin yeni adresi.</p>
+</footer>
 
-    renderSite();
-    renderAdmin();
-  </script>
 </body>
 </html>
