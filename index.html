@@ -12,3 +12,110 @@
   </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XAX</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="brand">XAX</div>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="site">Site</button>
+    <button class="tab" data-tab="admin">Yönetim</button>
+  </nav>
+
+  <main id="siteView">
+    <div class="categories" id="categoryList"></div>
+  </main>
+
+  <main id="adminView" class="hidden">
+    <form id="addForm">
+      <input type="text" id="catName" placeholder="Kategori adı" required>
+      <input type="number" id="catPrice" placeholder="Fiyat" required>
+      <button type="submit">Ekle</button>
+    </form>
+    <div class="categories" id="adminList"></div>
+  </main>
+
+  <script>
+    let data = JSON.parse(localStorage.getItem('shop')) || [];
+
+    function save() {
+      localStorage.setItem('shop', JSON.stringify(data));
+    }
+
+    function renderSite() {
+      const list = document.getElementById('categoryList');
+      list.innerHTML = '';
+      if (data.length === 0) {
+        list.innerHTML = '<p class="empty">Henüz kategori yok.</p>';
+        return;
+      }
+      data.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<h2>${item.name}</h2><p class="stat">${item.price} ₺</p>`;
+        list.appendChild(div);
+      });
+    }
+
+    function renderAdmin() {
+      const list = document.getElementById('adminList');
+      list.innerHTML = '';
+      data.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <h2>${item.name}</h2>
+          <input type="number" value="${item.price}" onchange="updatePrice(${i}, this.value)">
+          <button onclick="deleteItem(${i})">Sil</button>`;
+        list.appendChild(div);
+      });
+    }
+
+    function updatePrice(i, val) {
+      data .price = Number(val);
+      save();
+      renderSite();
+    }
+
+    function deleteItem(i) {
+      data.splice(i, 1);
+      save();
+      renderAdmin();
+      renderSite();
+    }
+
+    document.getElementById('addForm').addEventListener('submit', e => {
+      e.preventDefault();
+      data.push({
+        name: document.getElementById('catName').value,
+        price: Number(document.getElementById('catPrice').value)
+      });
+      save();
+      renderAdmin();
+      renderSite();
+      e.target.reset();
+    });
+
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.getElementById('siteView').classList.toggle('hidden', tab !== 'site');
+        document.getElementById('adminView').classList.toggle('hidden', tab !== 'admin');
+      });
+    });
+
+    renderSite();
+    renderAdmin();
+  </script>
+</body>
+</html>
