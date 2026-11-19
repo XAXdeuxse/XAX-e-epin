@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ürün Yönetimi</title>
+</head>
+<body>
+    <h2>Yeni Ürün Ekle</h2>
+    <form id="productForm">
+        <div>
+            <label>Oyun Adı:</label><br>
+            <input type="text" id="gameName" required>
+        </div>
+        <div>
+            <label>Kategori:</label><br>
+            <input type="text" id="category" required>
+        </div>
+        <div>
+            <label>Resim URL:</label><br>
+            <input type="url" id="imageUrl" required>
+        </div>
+        <div>
+            <label>Normal Fiyat:</label><br>
+            <input type="number" step="0.01" id="price" required>
+        </div>
+        <div>
+            <label>İndirimli Fiyat:</label><br>
+            <input type="number" step="0.01" id="discountedPrice">
+        </div>
+        <button type="submit">Ürünü Kaydet</button>
+    </form>
+</body>
+</html>
