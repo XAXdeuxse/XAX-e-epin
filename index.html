@@ -6,217 +6,460 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XAX Epin Store</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background: #090909;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    background: #111;
-    padding: 22px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #292929;
-}
-
-.logo {
-    color: #e0b443;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #e63939;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-.hero {
-    padding: 85px 20px;
-    text-align: center;
-    background: linear-gradient(135deg,#190808,#101010,#261600);
-}
-
-.hero h1 {
-    font-size: 42px;
-    margin-bottom: 18px;
-}
-
-.hero h1 span {
-    color: #e0b443;
-}
-
-.hero p {
-    color: #bbb;
-    margin-bottom: 25px;
-}
-
-.hero button {
-    background: #d62828;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 7px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.container {
-    padding: 45px 7%;
-}
-
-h2 {
-    margin-bottom: 25px;
-    color: #e0b443;
-}
-
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
-    gap: 20px;
-}
-
-.card {
-    background: #171717;
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    transition: .2s;
-}
-
-.card:hover {
-    border-color: #e0b443;
-    transform: translateY(-5px);
-}
-
-.product-icon {
-    font-size: 43px;
-    margin-bottom: 15px;
-}
-
-.card h3 {
-    margin-bottom: 12px;
-}
-
-.price {
-    color: #e0b443;
-    font-size: 22px;
-    margin: 15px 0;
-    font-weight: bold;
-}
-
-.card button {
-    background: #c92828;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 11px 20px;
-    cursor: pointer;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #111;
-    color: #888;
-    margin-top: 40px;
-}
-
-@media(max-width:600px) {
-    header {
-        flex-direction: column;
-        gap: 18px;
-    }
-    nav a {
-        margin: 0 7px;
-    }
-    .hero h1 {
-        font-size: 30px;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#090909;color:white;font-family:Arial,sans-serif}
+header{background:#111;padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292929;gap:15px;flex-wrap:wrap}
+.logo{color:#e0b443;font-size:28px;font-weight:bold}
+.logo span{color:#e63939}
+nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+nav a{color:white;text-decoration:none}
+button{cursor:pointer}
+.hero{padding:85px 20px;text-align:center;background:linear-gradient(135deg,#190808,#101010,#261600)}
+.hero h1{font-size:42px;margin-bottom:18px}
+.hero h1 span{color:#e0b443}
+.hero p{color:#bbb;margin-bottom:25px}
+.main-btn{background:#d62828;color:white;border:0;padding:14px 30px;border-radius:7px;font-size:16px}
+.container{padding:45px 7%}
+h2{margin-bottom:25px;color:#e0b443}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
+.card{background:#171717;border:1px solid #333;border-radius:12px;padding:25px;text-align:center;transition:.2s}
+.card:hover{border-color:#e0b443;transform:translateY(-5px)}
+.product-icon{font-size:43px;margin-bottom:15px}
+.card h3{margin-bottom:12px}
+.price{color:#e0b443;font-size:22px;margin:15px 0;font-weight:bold}
+.card button,.small-btn{background:#c92828;color:white;border:0;border-radius:6px;padding:11px 20px}
+footer{text-align:center;padding:30px;background:#111;color:#888;margin-top:40px}
+#authArea{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#adminPanel{display:none;background:#151515;border:1px solid #493b1c;border-radius:12px;padding:22px;margin:25px 7%}
+#adminPanel h2{margin-bottom:15px}
+.panel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.panel-box{background:#202020;padding:16px;border-radius:9px}
+input,select,textarea{width:100%;padding:11px;margin:7px 0 12px;background:#090909;color:white;border:1px solid #444;border-radius:6px}
+label{font-size:13px;color:#ccc}
+.panel-box button{margin:4px 3px 4px 0}
+.secondary{background:#555!important}
+.danger{background:#9d2020!important}
+#authModal{display:none;position:fixed;inset:0;background:#000c;z-index:10;align-items:center;justify-content:center;padding:15px}
+.modal{background:#171717;border:1px solid #555;border-radius:12px;padding:25px;width:100%;max-width:400px}
+.modal h2{margin-bottom:15px}
+.modal button{margin-top:5px}
+.product-actions{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.muted{color:#aaa;font-size:13px}
+.status{color:#e0b443;font-size:13px;margin-top:8px}
+#adminList{margin-top:10px}
+.admin-row{background:#292929;padding:10px;border-radius:6px;margin:7px 0;overflow-wrap:anywhere}
+@media(max-width:600px){
+ header{flex-direction:column}
+ nav{justify-content:center}
+ .hero h1{font-size:30px}
+ .container{padding:35px 5%}
+ #adminPanel{margin:20px 5%}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-    <div class="logo">XAX <span>EPIN</span></div>
-    <nav>
-        <a href="#anasayfa">Ana Sayfa</a>
-        <a href="#urunler">Ürünler</a>
-        <a href="#iletisim">İletişim</a>
-    </nav>
+ <div class="logo">XAX <span>EPIN</span></div>
+ <nav>
+  <a href="#anasayfa">Ana Sayfa</a>
+  <a href="#urunler">Ürünler</a>
+  <a href="#iletisim">İletişim</a>
+  <span id="authArea">
+   <button class="small-btn" onclick="openAuth()">Giriş / Kayıt</button>
+  </span>
+ </nav>
 </header>
 
 <section class="hero" id="anasayfa">
-    <h1>XAX <span>EPIN STORE</span></h1>
-    <p>Dijital oyun dünyasına hoş geldin!</p>
-    <button onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'})">
-        Ürünleri Keşfet
-    </button>
+ <h1>XAX <span>EPIN STORE</span></h1>
+ <p>Dijital oyun dünyasına hoş geldin!</p>
+ <button class="main-btn" onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'})">Ürünleri Keşfet</button>
+</section>
+
+<section id="adminPanel">
+ <h2>⚙️ Yönetim Paneli</h2>
+ <p class="muted" id="roleText"></p>
+ <div class="panel-grid" style="margin-top:18px">
+
+  <div class="panel-box">
+   <h3>📦 Ürün Yönetimi</h3>
+   <label>Ürün adı</label>
+   <input id="pName" placeholder="Steam 5 Dolar">
+   <label>Fiyat (TL)</label>
+   <input id="pPrice" placeholder="150">
+   <label>İkon / Emoji</label>
+   <input id="pIcon" value="🎮">
+   <label>Kategori</label>
+   <select id="pCategory"></select>
+   <label>Açıklama</label>
+   <textarea id="pDescription" placeholder="Ürün açıklaması"></textarea>
+   <button class="small-btn" onclick="saveProduct()">Ürünü Kaydet</button>
+   <button class="small-btn secondary" onclick="resetProductForm()">Temizle</button>
+   <p class="status" id="productStatus"></p>
+  </div>
+
+  <div class="panel-box">
+   <h3>📁 Kategori Yönetimi</h3>
+   <label>Yeni kategori adı</label>
+   <input id="categoryName" placeholder="Steam Cüzdan Kodları">
+   <button class="small-btn" onclick="addCategory()">Kategori Ekle</button>
+   <div id="categoryList"></div>
+   <p class="status" id="categoryStatus"></p>
+  </div>
+
+  <div class="panel-box" id="founderBox" style="display:none">
+   <h3>👑 Admin Yönetimi</h3>
+   <p class="muted">Admin olacak kişinin sitede kayıtlı hesabının UID'sini gir.</p>
+   <label>Kullanıcı UID</label>
+   <input id="newAdminUid" placeholder="Firebase Authentication UID">
+   <button class="small-btn" onclick="addAdmin()">Admin Ata</button>
+   <div id="adminList"></div>
+   <p class="status" id="adminStatus"></p>
+  </div>
+ </div>
 </section>
 
 <main class="container" id="urunler">
-    <h2>🔥 Steam Cüzdan Kodları</h2>
-
-    <div class="products">
-
-        <div class="card">
-            <div class="product-icon">🎮</div>
-            <h3>Steam 5 Dolar</h3>
-            <div class="price">Fiyat Bekleniyor</div>
-            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
-        </div>
-
-        <div class="card">
-            <div class="product-icon">🎮</div>
-            <h3>Steam 10 Dolar</h3>
-            <div class="price">Fiyat Bekleniyor</div>
-            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
-        </div>
-
-        <div class="card">
-            <div class="product-icon">🎮</div>
-            <h3>Steam 25 Dolar</h3>
-            <div class="price">Fiyat Bekleniyor</div>
-            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
-        </div>
-
-        <div class="card">
-            <div class="product-icon">🎮</div>
-            <h3>Steam 50 Dolar</h3>
-            <div class="price">Fiyat Bekleniyor</div>
-            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
-        </div>
-
-        <div class="card">
-            <div class="product-icon">🎮</div>
-            <h3>Steam 100 Dolar</h3>
-            <div class="price">Fiyat Bekleniyor</div>
-            <button onclick="alert('Bu ürün henüz satışa açılmadı.')">İncele</button>
-        </div>
-
-    </div>
+ <h2>🔥 Ürünler</h2>
+ <div id="products" class="products">
+  <p class="muted">Ürünler yükleniyor...</p>
+ </div>
 </main>
 
 <footer id="iletisim">
-    <div class="logo">XAX <span>EPIN</span></div>
-    <p style="margin-top:12px">© 2026 XAX Epin Store. Tüm hakları saklıdır.</p>
-    <p style="margin-top:8px">Dijital alışverişin yeni adresi.</p>
+ <div class="logo">XAX <span>EPIN</span></div>
+ <p style="margin-top:12px">© 2026 XAX Epin Store. Tüm hakları saklıdır.</p>
+ <p style="margin-top:8px">Dijital alışverişin yeni adresi.</p>
 </footer>
 
+<div id="authModal">
+ <div class="modal">
+  <h2 id="authTitle">Giriş Yap</h2>
+  <input id="authEmail" type="email" placeholder="E-posta">
+  <input id="authPassword" type="password" placeholder="Şifre">
+  <button class="small-btn" style="width:100%" onclick="login()">Giriş Yap</button>
+  <button class="small-btn secondary" style="width:100%" onclick="register()">Hesap Oluştur</button>
+  <button class="small-btn danger" style="width:100%" onclick="closeAuth()">Kapat</button>
+  <p class="status" id="authStatus"></p>
+ </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+ getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+ onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+ getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc,
+ doc, getDoc, setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+ apiKey: "AIzaSyBm7WliXB1S7dhJQRUSHka_4cIRoS4fS9c",
+ authDomain: "xax-epin.firebaseapp.com",
+ projectId: "xax-epin",
+ storageBucket: "xax-epin.firebasestorage.app",
+ messagingSenderId: "871228838650",
+ appId: "1:871228838650:web:4c8cd1a09be15794916f43",
+ measurementId: "G-6C6H8QJ5M3"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const FOUNDERS = [
+ "T8Oh7DMy6LYsQhYt0VQqWFDlw4O2",
+ "50aWfeTKMpbzbEC6PkcwZQhdjYm2"
+];
+
+let currentUser = null;
+let currentRole = "visitor";
+let editingProductId = null;
+let productsCache = [];
+let categoriesCache = [];
+
+const $ = id => document.getElementById(id);
+const safe = value => String(value ?? "").replace(/[&<>"']/g, c => ({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+
+window.openAuth = () => {
+ $("authModal").style.display = "flex";
+ $("authStatus").textContent = "";
+};
+window.closeAuth = () => $("authModal").style.display = "none";
+
+window.login = async () => {
+ try {
+  await signInWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value);
+  $("authStatus").textContent = "Giriş başarılı!";
+  closeAuth();
+ } catch(e) {
+  $("authStatus").textContent = authError(e);
+ }
+};
+
+window.register = async () => {
+ try {
+  await createUserWithEmailAndPassword(auth,$("authEmail").value.trim(),$("authPassword").value);
+  $("authStatus").textContent = "Hesabın oluşturuldu!";
+  closeAuth();
+ } catch(e) {
+  $("authStatus").textContent = authError(e);
+ }
+};
+
+function authError(e) {
+ const errors = {
+  "auth/invalid-email":"E-posta adresini kontrol et.",
+  "auth/invalid-credential":"E-posta veya şifre hatalı.",
+  "auth/email-already-in-use":"Bu e-posta zaten kayıtlı.",
+  "auth/weak-password":"Şifre en az 6 karakter olmalı.",
+  "auth/too-many-requests":"Çok fazla deneme yapıldı. Daha sonra tekrar dene."
+ };
+ return errors[e.code] || "İşlem başarısız: " + e.message;
+}
+
+window.logout = async () => {
+ await signOut(auth);
+ $("adminPanel").style.display = "none";
+};
+
+onAuthStateChanged(auth, async user => {
+ currentUser = user;
+ currentRole = "visitor";
+
+ if(user) {
+  try {
+   const snap = await getDoc(doc(db,"admins",user.uid));
+   if(snap.exists() && snap.data().active === true) {
+    currentRole = snap.data().role;
+   }
+  } catch(e) {
+   console.error(e);
+  }
+
+  $("authArea").innerHTML = `
+   <span class="muted">${safe(user.email)}</span>
+   <button class="small-btn secondary" onclick="logout()">Çıkış</button>`;
+ } else {
+  $("authArea").innerHTML = `<button class="small-btn" onclick="openAuth()">Giriş / Kayıt</button>`;
+ }
+
+ const canManage = currentRole === "founder" || currentRole === "admin";
+ $("adminPanel").style.display = canManage ? "block" : "none";
+ $("founderBox").style.display = currentRole === "founder" ? "block" : "none";
+ $("roleText").textContent = currentRole === "founder" ? "Kurucu hesabı" : "Admin hesabı";
+
+ if(currentRole === "founder") loadAdmins();
+ await loadCategories();
+ await loadProducts();
+});
+
+async function loadProducts() {
+ try {
+  const snap = await getDocs(collection(db,"products"));
+  productsCache = snap.docs.map(d => ({id:d.id,...d.data()}));
+  renderProducts();
+ } catch(e) {
+  $("products").innerHTML = `<p class="muted">Ürünler yüklenemedi. Firebase kurallarını kontrol et.</p>`;
+  console.error(e);
+ }
+}
+
+function renderProducts() {
+ if(!productsCache.length) {
+  $("products").innerHTML = `<p class="muted">Henüz ürün eklenmemiş. Yönetim panelinden ürün ekleyebilirsin.</p>`;
+  return;
+ }
+
+ $("products").innerHTML = productsCache.map(p => `
+  <div class="card">
+   <div class="product-icon">${safe(p.icon || "🎮")}</div>
+   <h3>${safe(p.name)}</h3>
+   <p class="muted">${safe(p.category || "")}</p>
+   <div class="price">${p.price ? safe(p.price) + " TL" : "Fiyat Bekleniyor"}</div>
+   <p class="muted">${safe(p.description || "")}</p>
+   <div class="product-actions">
+    <button onclick="inspectProduct('${p.id}')">İncele</button>
+    ${currentRole === "founder" || currentRole === "admin" ? `
+     <button class="secondary" onclick="editProduct('${p.id}')">Düzenle</button>
+     <button class="danger" onclick="removeProduct('${p.id}')">Sil</button>
+    ` : ""}
+   </div>
+  </div>
+ `).join("");
+}
+
+window.inspectProduct = id => {
+ const p = productsCache.find(x => x.id === id);
+ if(p) alert(p.name + "\n" + (p.description || "Açıklama yok.") + "\nFiyat: " + (p.price ? p.price + " TL" : "Bekleniyor"));
+};
+
+window.resetProductForm = () => {
+ editingProductId = null;
+ $("pName").value = "";
+ $("pPrice").value = "";
+ $("pIcon").value = "🎮";
+ $("pDescription").value = "";
+ $("productStatus").textContent = "";
+};
+
+window.saveProduct = async () => {
+ if(!["founder","admin"].includes(currentRole)) return;
+ const name = $("pName").value.trim();
+ const price = $("pPrice").value.trim();
+ const icon = $("pIcon").value.trim() || "🎮";
+ const category = $("pCategory").value;
+ const description = $("pDescription").value.trim();
+
+ if(!name) {
+  $("productStatus").textContent = "Ürün adı gerekli.";
+  return;
+ }
+ if(price && (!Number.isFinite(Number(price)) || Number(price) < 0)) {
+  $("productStatus").textContent = "Geçerli bir fiyat gir.";
+  return;
+ }
+
+ try {
+  const data = {name,price,icon,category,description,updatedAt:Date.now()};
+  if(editingProductId) {
+   await updateDoc(doc(db,"products",editingProductId),data);
+  } else {
+   await addDoc(collection(db,"products"),{...data,createdAt:Date.now()});
+  }
+  $("productStatus").textContent = "Ürün kaydedildi!";
+  resetProductForm();
+  await loadProducts();
+ } catch(e) {
+  $("productStatus").textContent = "Kaydedilemedi: " + e.message;
+ }
+};
+
+window.editProduct = id => {
+ const p = productsCache.find(x => x.id === id);
+ if(!p) return;
+ editingProductId = id;
+ $("pName").value = p.name || "";
+ $("pPrice").value = p.price || "";
+ $("pIcon").value = p.icon || "🎮";
+ $("pCategory").value = p.category || "";
+ $("pDescription").value = p.description || "";
+ $("productStatus").textContent = "Düzenleme modu açık.";
+ $("adminPanel").scrollIntoView({behavior:"smooth"});
+};
+
+window.removeProduct = async id => {
+ if(!confirm("Bu ürünü silmek istediğine emin misin?")) return;
+ try {
+  await deleteDoc(doc(db,"products",id));
+  await loadProducts();
+ } catch(e) {
+  alert("Silinemedi: " + e.message);
+ }
+};
+
+async function loadCategories() {
+ try {
+  const snap = await getDocs(collection(db,"categories"));
+  categoriesCache = snap.docs.map(d => ({id:d.id,...d.data()}));
+  $("pCategory").innerHTML = categoriesCache.map(c =>
+   `<option value="${safe(c.name)}">${safe(c.name)}</option>`
+  ).join("") || `<option value="">Kategori yok</option>`;
+
+  $("categoryList").innerHTML = categoriesCache.map(c => `
+   <div class="admin-row">
+    ${safe(c.name)}
+    ${["founder","admin"].includes(currentRole) ?
+     `<button class="small-btn danger" onclick="removeCategory('${c.id}')">Sil</button>` : ""}
+   </div>
+  `).join("");
+ } catch(e) {
+  console.error(e);
+ }
+}
+
+window.addCategory = async () => {
+ if(!["founder","admin"].includes(currentRole)) return;
+ const name = $("categoryName").value.trim();
+ if(!name) {
+  $("categoryStatus").textContent = "Kategori adı gir.";
+  return;
+ }
+ try {
+  await addDoc(collection(db,"categories"),{name,createdAt:Date.now()});
+  $("categoryName").value = "";
+  $("categoryStatus").textContent = "Kategori eklendi.";
+  await loadCategories();
+ } catch(e) {
+  $("categoryStatus").textContent = "Hata: " + e.message;
+ }
+};
+
+window.removeCategory = async id => {
+ if(!confirm("Kategoriyi silmek istiyor musun?")) return;
+ try {
+  await deleteDoc(doc(db,"categories",id));
+  await loadCategories();
+ } catch(e) {
+  alert("Silinemedi: " + e.message);
+ }
+};
+
+async function loadAdmins() {
+ if(currentRole !== "founder") return;
+ try {
+  const snap = await getDocs(collection(db,"admins"));
+  $("adminList").innerHTML = snap.docs.map(d => {
+   const a = d.data();
+   const protectedFounder = FOUNDERS.includes(d.id);
+   return `<div class="admin-row">
+    <b>${protectedFounder ? "Kurucu" : "Admin"}</b><br>
+    <span class="muted">${safe(d.id)}</span><br>
+    Durum: ${a.active ? "Aktif" : "Pasif"}
+    ${!protectedFounder ? `<button class="small-btn danger" onclick="removeAdmin('${d.id}')">Yetkiyi Kaldır</button>` : ""}
+   </div>`;
+  }).join("");
+ } catch(e) {
+  $("adminStatus").textContent = "Adminler yüklenemedi: " + e.message;
+ }
+}
+
+window.addAdmin = async () => {
+ if(currentRole !== "founder") return;
+ const uid = $("newAdminUid").value.trim();
+ if(!uid) {
+  $("adminStatus").textContent = "UID girmen gerekiyor.";
+  return;
+ }
+ if(FOUNDERS.includes(uid)) {
+  $("adminStatus").textContent = "Kurucu hesapları değiştirilemez.";
+  return;
+ }
+ try {
+  await setDoc(doc(db,"admins",uid),{role:"admin",active:true});
+  $("newAdminUid").value = "";
+  $("adminStatus").textContent = "Admin başarıyla atandı.";
+  await loadAdmins();
+ } catch(e) {
+  $("adminStatus").textContent = "Admin atanamadı: " + e.message;
+ }
+};
+
+window.removeAdmin = async uid => {
+ if(currentRole !== "founder" || FOUNDERS.includes(uid)) return;
+ if(!confirm("Bu kullanıcının admin yetkisini kaldırmak istiyor musun?")) return;
+ try {
+  await deleteDoc(doc(db,"admins",uid));
+  await loadAdmins();
+ } catch(e) {
+  $("adminStatus").textContent = "Yetki kaldırılamadı: " + e.message;
+ }
+};
+</script>
 </body>
 </html>
